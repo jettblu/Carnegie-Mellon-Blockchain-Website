@@ -1,0 +1,46 @@
+﻿body {
+    color: white;
+    background-color: black;
+    font-size: 22px;
+}
+
+.navLinks:hover {
+    color: pink;
+}
+
+
+.logoSmall {
+    width: 58px;
+    margin-top: 2%;
+}
+
+.logoMed {
+    width: 25%;
+}
+
+.mainTitle {
+    margin-bottom: 3%
+}
+
+.subTitle {
+    margin-bottom: 2%
+}
+
+@media (max-width: 600px) {
+    .logoMed {
+        width: 55%;
+    }
+
+    .subTitle {
+        margin-bottom: 4%
+    }
+}
+
+.textGradientRed {
+    background-image: linear-gradient(to right, #ffffff, #ff4747);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
