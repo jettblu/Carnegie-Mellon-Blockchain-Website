@@ -17,7 +17,8 @@ namespace CbgSite.Areas.Projects.Pages
             _projectManager = projectManager;
             _contextCbg = contextCbg;
         }
-        Data.Project Project { get; set; }
+        [BindProperty]
+        public Data.Project Project { get; set; }
         public async Task<IActionResult> OnGet(string id)
         {
             if (id == null)
