@@ -44,3 +44,8 @@
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
 }
+
+tbody tr:hover {
+    background-color: #ff697d
+}
+
