@@ -16,10 +16,10 @@
     <tbody>
         @foreach (var project in Model.Projects)
         {
-        <a asp-page="../Index">
+        <a asp-page="../Index" asp-route-id="@project.Id">
             <tr>
                 <td>
-                    @project.Name <i class="material-icons tiny">edit</i>
+                    @project.Name
                 </td>
                 <td>
                 </td>
