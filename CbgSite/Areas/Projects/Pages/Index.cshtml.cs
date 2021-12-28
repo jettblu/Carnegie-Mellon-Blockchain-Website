@@ -9,9 +9,14 @@ namespace CbgSite.Areas.Projects.Pages
 {
     public class IndexModel : PageModel
     {
+        private Services.ProjectManager _projectManager { get; set; }
+        public IndexModel(Services.ProjectManager projectManager){
+            _projectManager = projectManager;
+        }
         List<Data.Project > Projects { get; set; }
         public void OnGet()
         {
+            Projects = _projectManager.GetProjects();
         }
     }
 }

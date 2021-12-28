@@ -9,8 +9,13 @@ namespace CbgSite.Services
     {
         private readonly Data.CbgSiteContext _contextCbg;
 
+        public ProjectManager(Data.CbgSiteContext contextCbg)
+        {
+            _contextCbg = contextCbg;
+        }
+
         // retrieves all projects in descending order or projects that match query, if specified
-        public List<Areas.Projects.Data.Project> GetProjects(string query)
+        public List<Areas.Projects.Data.Project> GetProjects(string query = "")
         {
             if (String.IsNullOrEmpty(query))
             {
