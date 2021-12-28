@@ -3,3 +3,73 @@
 @{
     ViewData["Title"] = "Create Project";
 }
+
+
+<h1>Create</h1>
+
+<h4>Project</h4>
+<hr />
+
+<center>
+
+    <div class="row">
+        <div class="card col s12 l8 offset-l2 rounded black">
+            <form method="post">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="input-field col l8 offset-l2 s12">
+                    <label asp-for="Project.Name">Name</label>
+                    <input type="text" asp-for="Project.Name" />
+                    <span asp-validation-for="Projects.Name" class="text-danger"></span>
+                </div>
+
+                <div class="input-field col offset-l2 l5 s12">
+                    <label asp-for="Project.ThumbnailPath">Image Path</label>
+                    <input type="text" asp-for="Project.ThumbnailPath" />
+                    <span asp-validation-for="Project.ThumbnailPath" class="text-danger"></span>
+                </div>
+
+                <div class="input-field col l3 s12">
+                    <label asp-for="CrypticPayCoins.Color">Hex</label>
+                    <input type="text" asp-for="Project.Color" />
+                    <span asp-validation-for="Project.Color" class="text-danger"></span>
+                </div>
+
+                <div class="input-field col l8 offset-l2 s12">
+                    <textarea asp-for="Project.Description" id="msg" placeholder="Project description..." class="materialize-textarea"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 l12 m12">
+                        <!-- Switch -->
+                        <div class="switch">
+                            <label>
+                                <span id="IsSupported">
+                                    Private
+                                </span>
+                                <input type="checkbox" align="center" id="authSwitch" asp-for="CrypticPayCoins.IsSupported">
+                                <span class="lever"></span>
+                                <span id="authOffLabel">
+                                    Public
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="input-field">
+                    <input type="submit" value="Create" class="btn btnPrimary" />
+                </div>
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</center>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
