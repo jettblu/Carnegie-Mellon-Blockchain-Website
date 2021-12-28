@@ -1,0 +1,33 @@
+﻿@page
+@model CbgSite.Areas.Projects.Pages.Manage.IndexModel
+@{
+    ViewData["Title"] = " Manage Projects";
+}
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Leader</th>
+            <th>Is Live</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in collection)
+        {
+
+        }
+        <tr>
+            <td>
+                Kryptik <i class="material-icons tiny">edit</i>
+            </td>
+            <td>
+                Jett Hays
+            </td>
+            <td>
+                True
+            </td>
+        </tr>
+    </tbody>
+</table>
