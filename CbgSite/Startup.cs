@@ -32,6 +32,8 @@ namespace CbgSite
                     Configuration.GetConnectionString("DefaultConnection")));
             /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();*/
+            // add project manager service
+            services.AddTransient<Services.ProjectManager>();
             services.AddRazorPages();
         }
 

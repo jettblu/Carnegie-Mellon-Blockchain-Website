@@ -11,6 +11,7 @@ namespace CbgSite.Data
 {
     public class CbgSiteContext : IdentityDbContext<CbgUser>
     {
+        public DbSet<Areas.Projects.Data.Project> Projects { get; set; }
         public CbgSiteContext(DbContextOptions<CbgSiteContext> options)
             : base(options)
         {
