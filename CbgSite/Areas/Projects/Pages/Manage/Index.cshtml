@@ -10,24 +10,23 @@
         <tr>
             <th>Project</th>
             <th>Leader</th>
-            <th>Is Live</th>
+            <th>Is Public</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in collection)
+        @foreach (var project in Model.Projects)
         {
-
+            <tr>
+                <td>
+                    @project.Name <i class="material-icons tiny">edit</i>
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                    @project.IsPublic
+                </td>
+            </tr>
         }
-        <tr>
-            <td>
-                Kryptik <i class="material-icons tiny">edit</i>
-            </td>
-            <td>
-                Jett Hays
-            </td>
-            <td>
-                True
-            </td>
-        </tr>
     </tbody>
 </table>
