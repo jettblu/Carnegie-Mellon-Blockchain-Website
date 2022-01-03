@@ -21,6 +21,7 @@ namespace CbgSite.Areas.Identity
                         context.Configuration.GetConnectionString("CbgSiteContextConnection")));
 
                 services.AddDefaultIdentity<CbgUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<CbgSiteContext>();
             });
         }
