@@ -1,0 +1,35 @@
+﻿@page
+@model CbgSite.Areas.Members.Pages.IndexModel
+@{
+}
+
+<div class="" col s12 l10 offset-l1">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Skill</th>
+                <th>Is Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model.Members)
+            {
+                <tr>
+                    <td>
+                        @member.Name
+                    </td>
+                    <td>
+                        ....
+                    </td>
+                    <td>
+                        ....
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
