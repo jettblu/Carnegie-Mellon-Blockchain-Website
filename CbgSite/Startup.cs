@@ -1,3 +1,4 @@
+using CbgSite.Areas.Identity.Data;
 using CbgSite.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +39,7 @@ namespace CbgSite
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<CbgUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -59,6 +60,8 @@ namespace CbgSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            Seeds.DefaultRoles.SeedAsync(userManager, roleManager).Wait();
 
             app.UseEndpoints(endpoints =>
             {
