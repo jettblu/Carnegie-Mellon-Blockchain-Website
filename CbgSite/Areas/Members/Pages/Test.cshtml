@@ -1,0 +1,19 @@
+﻿@page
+@model CbgSite.Areas.Members.Pages.TestModel
+@{
+}
+@using Microsoft.AspNetCore.Identity
+@using CbgSite.Areas.Identity.Data;
+
+@inject SignInManager<CbgUser> SignInManager
+@inject UserManager<CbgUser> UserManager
+
+@{
+    var userInfo = UserManager.GetUserAsync(User).Result;
+    <form id="testForm">
+        <p>Logged in as: @userInfo.UserName</p>
+        <button class="btn btn-primary" type="submit">Test</button>
+    </form>
+}
+
+
