@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CbgSite.Areas.Identity.Data;
+using CbgSite.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,18 +15,20 @@ namespace CbgSite.Areas.Members.Pages
     {
         private readonly UserManager<CbgUser> _userManager;
         private readonly SignInManager<CbgUser> _signInManager;
+        private CbgSiteContext _contextCbg;
 
         public IndexModel(SignInManager<CbgUser> signInManager,
-            UserManager<CbgUser> userManager)
+            UserManager<CbgUser> userManager, CbgSiteContext cbgSiteContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _contextCbg = cbgSiteContext;
         }
-        public IQueryable<CbgUser> Members { get; set; }
+        public List<CbgUser> Members { get; set; }
         public void OnGet()
         {
-            // retrieve members and update model state
-            Members = _userManager.Users;
+            // retrieve members and update model state          
+            Members = _contextCbg.Users.ToList();
         }
     }
 }
