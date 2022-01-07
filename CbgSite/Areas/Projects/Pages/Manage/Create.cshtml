@@ -20,7 +20,7 @@
                 <div class="input-field col l8 offset-l2 s12">
                     <label asp-for="Project.Name">Name</label>
                     <input type="text" asp-for="Project.Name" />
-                    <span asp-validation-for="Projects.Name" class="text-danger"></span>
+                    <span asp-validation-for="Project.Name" class="text-danger"></span>
                 </div>
 
                 <div class="input-field col offset-l2 l5 s12">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="input-field col l3 s12">
-                    <label asp-for="CrypticPayCoins.Color">Hex</label>
+                    <label asp-for="Project.Color">Hex</label>
                     <input type="text" asp-for="Project.Color" />
                     <span asp-validation-for="Project.Color" class="text-danger"></span>
                 </div>
@@ -47,7 +47,7 @@
                                 <span id="IsSupported">
                                     Private
                                 </span>
-                                <input type="checkbox" align="center" id="authSwitch" asp-for="CrypticPayCoins.IsSupported">
+                                <input type="checkbox" align="center" id="authSwitch" asp-for="Project.IsPublic">
                                 <span class="lever"></span>
                                 <span id="authOffLabel">
                                     Public
