@@ -33,6 +33,7 @@ namespace CbgSite.Areas.Members.Pages
         }
         public async void OnGet()
         {
+
         }
 
         public async Task OnPostAddRole()
@@ -40,6 +41,7 @@ namespace CbgSite.Areas.Members.Pages
             var user = await _userManager.GetUserAsync(User);
             var role = Globals.Roles.SuperAdmin.ToString();
             var res = await _userManager.AddToRoleAsync(user, role);
+            await _signInManager.RefreshSignInAsync(user);
         }
     }
 }

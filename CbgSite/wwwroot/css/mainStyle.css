@@ -121,3 +121,29 @@ a:hover {
         background-color: #75ffcd;
     }
 
+/* project style */
+
+.hoverable {
+    box-shadow: 0 2px 2px 0 black, 0 3px 1px -2px black, 0 1px 5px 0 black;
+}
+
+    .hoverable:hover {
+        box-shadow: 2px 4px 5px 0 #66ffa3, 2px 5px 3px -3px #66ffa3, 2px 5px 10px 0 #66ffa3;
+    }
+
+.projectCard {
+    background-color: #000000;
+    border: solid white 1px;
+    padding: 2px;
+}
+
+;
+
+.projectLink {
+    color: #40ff8c !important
+}
+
+.projectLink:hover {
+    color: #59ff9c !important
+}
+
