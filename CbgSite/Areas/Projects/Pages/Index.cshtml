@@ -3,3 +3,16 @@
 @{
     ViewData["Title"] = "Projects Home";
 }
+
+<div class="col s12 l10 offset-l1">
+    <div class="row">
+
+        <div class="center">
+            <img src="@Model.Project.ThumbnailPath" class="logoMed">
+        </div>
+        <div class="projectContent">
+            <h4>@Model.Project.Name</h4>
+            <p>@Model.Project.Description</p>
+        </div>
+    </div>
+</div>
