@@ -14,7 +14,7 @@ namespace CbgSite.Areas.Projects.Pages
         {
             _projectManager = projectManager;
         }
-        List<Data.Project> Projects { get; set; }
+        public List<Data.Project> Projects { get; set; }
         public void OnGet()
         {
             Projects = _projectManager.GetProjects();
