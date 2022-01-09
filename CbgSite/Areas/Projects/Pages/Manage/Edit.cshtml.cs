@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CbgSite.Areas.Projects.Pages.Manage
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class EditModel : PageModel
     {
         public void OnGet()

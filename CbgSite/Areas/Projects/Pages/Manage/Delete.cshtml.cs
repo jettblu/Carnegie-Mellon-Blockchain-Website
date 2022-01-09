@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CbgSite.Areas.Projects.Pages.Manage
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class DeleteModel : PageModel
     {
         private Services.ProjectManager _projectManager { get; set; }

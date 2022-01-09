@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CbgSite.Areas.Members.Pages
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class IndexModel : PageModel
     {
         private readonly UserManager<CbgUser> _userManager;
