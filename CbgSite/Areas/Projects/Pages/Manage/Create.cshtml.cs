@@ -39,5 +39,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
             return RedirectToPage("./Index");
         }
+
+
     }
 }

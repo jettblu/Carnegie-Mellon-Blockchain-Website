@@ -7,9 +7,10 @@
 
 <nav class="z-depth-0">
     <div class="nav-wrapper black lighten-5">
-        <a class="brand-logo left-align hide-on-med-and-down" style="margin-left: 5%; margin-top: 1.3%" asp-page="../Index"><img src="~/media/cbgLogo.png" class="logoSmall" alt="CBG Logo"></a>
+        <a class="brand-logo left-align hide-on-med-and-down" style="margin-left: 5%; margin-top: 1.3%" href="/"><img src="~/media/cbgLogo.png" class="logoSmall" alt="CBG Logo"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="white-text material-icons">menu</i></a>
         <ul id="nav-mobile" class="right z-depth-0 hide-on-med-and-down">
+            <li><a class="navLinks" asp-area="Projects" asp-page="All">Projects</a></li>
             @if (SignInManager.IsSignedIn(User))
             {
                 <li>
@@ -17,7 +18,7 @@
                 </li>
                 <li>
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                        <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                        <button type="submit" class="nav-link btn btn-link black text-white">Logout</button>
                     </form>
                 </li>
             }
@@ -35,7 +36,9 @@
 </nav>
 <ul class="right side-nav lighten-5" id="mobile-demo">
     <br>
-    <div class="center-align "><a asp-page="../Index"><img src="~/media/cbgLogo.png" alt="CBG Logo" class="logoSmall"></a></div>
+    <div class="center-align "><a href="/"><img src="~/media/cbgLogo.png" alt="CBG Logo" class="logoSmall"></a></div>
+
+    <li><a class="navLinks" asp-area="Projects" asp-page="All">Projects</a></li>
     @if (SignInManager.IsSignedIn(User))
     {
         <li>
@@ -43,7 +46,7 @@
         </li>
         <li>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="nav-link btn btn-link white text-black">Logout</button>
             </form>
         </li>
     }
@@ -56,5 +59,5 @@
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }
-    <li><a class="navLinks" href="../books.html">Support</a></li>
+
 </ul>
