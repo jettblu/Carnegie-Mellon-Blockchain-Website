@@ -19,7 +19,11 @@
     }
     <li class="nav-item"><a class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor Auth.</a></li>
     <li class="nav-item"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal Data</a></li>
-
+    <li>
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link grey text-white">Logout</button>
+        </form>
+    </li>
     <br />
     <li class="nav-item"><a class="" id="main-site" href="/">&#8592 Main Site</a></li>
 
