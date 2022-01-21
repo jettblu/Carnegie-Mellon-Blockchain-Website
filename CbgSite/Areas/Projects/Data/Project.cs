@@ -19,8 +19,15 @@ namespace CbgSite.Areas.Projects.Data
         public string ThumbnailPath { get; set; }
         // custom color for project page
         public string Color { get; set; }
-        // short description of project
+        // short description of project... used for quick display
         public string Description { get; set; }
+        // extended description of project.. used on project page
+        public string DescriptionLong { get; set; }
+        // link to project's GitHub
+        public string LinkGithub { get; set; }
+        // link to project's twitter profile
+        public string LinkTwitter { get; set; }
+
         public bool IsPublic { get; set; }
 
         [DataType(DataType.Date)]

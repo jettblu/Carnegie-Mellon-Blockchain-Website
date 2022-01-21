@@ -3,8 +3,10 @@
 @{
 }
 
+<center>
+    <h3>Projects</h3>
+</center>
 
-<h3>Projects</h3>
 <div class="col s12 l10 offset-l1">
     <div class="row">
         @foreach (var project in Model.Projects)
@@ -12,7 +14,7 @@
             <div class="col s12 l6">
                 <div class="card projectCard hoverable">
                     <div class="card-image">
-                        <img src="@project.ThumbnailPath">
+                        <img class="responsive-img" src="@project.ThumbnailPath">
                     </div>
                     <div class="card-content">
                         <span class="card-title">@project.Name</span>
