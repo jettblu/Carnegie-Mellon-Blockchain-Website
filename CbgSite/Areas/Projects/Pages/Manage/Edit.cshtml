@@ -33,10 +33,24 @@
                     <input type="text" asp-for="Project.Color" />
                     <span asp-validation-for="Project.Color" class="text-danger"></span>
                 </div>
+                <div class="input-field offset-l2 col l4 s12">
+                    <label asp-for="Project.LinkGithub">GitHub</label>
+                    <input type="text" asp-for="Project.LinkGithub" />
+                    <span asp-validation-for="Project.LinkGithub" class="text-danger"></span>
+                </div>
+                <div class="input-field col l4 s12">
+                    <label asp-for="Project.LinkTwitter">Twitter</label>
+                    <input type="text" asp-for="Project.LinkTwitter" />
+                    <span asp-validation-for="Project.LinkTwitter" class="text-danger"></span>
+                </div>
 
                 <div class="input-field col l8 offset-l2 s12">
                     <label asp-for="Project.Description">Short Description</label>
-                    <textarea asp-for="Project.Description" id="msg" placeholder="Project description..." class="materialize-textarea"></textarea>
+                    <textarea asp-for="Project.Description" id="descriptionShort" placeholder="Quick project description..." class="materialize-textarea"></textarea>
+                </div>
+                <div class="input-field col l8 offset-l2 s12">
+                    <label asp-for="Project.DescriptionLong">Long Description</label>
+                    <textarea asp-for="Project.DescriptionLong" id="descriptionLong" placeholder="Extended project description..." class="materialize-textarea"></textarea>
                 </div>
 
                 <div class="row">
