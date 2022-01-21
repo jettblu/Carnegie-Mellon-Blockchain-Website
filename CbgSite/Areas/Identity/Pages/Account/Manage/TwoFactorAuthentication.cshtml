@@ -7,6 +7,7 @@
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h4>@ViewData["Title"]</h4>
+<br />
 @if (Model.Is2faEnabled)
 {
     if (Model.RecoveryCodesLeft == 0)
@@ -41,15 +42,17 @@
     <a asp-page="./GenerateRecoveryCodes" class="btn btn-default">Reset recovery codes</a>
 }
 
-<h5>Authenticator app</h5>
+
+<p>Adding two-factor authentication will help keep your account secure from hackers.</p>
+
 @if (!Model.HasAuthenticator)
 {
     <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-default">Add authenticator app</a>
 }
 else
 {
-    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-default">Setup authenticator app</a>
-    <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-default">Reset authenticator app</a>
+    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-default">Setup Authenticator</a>
+    <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-default">Reset Authenticator</a>
 }
 
 @section Scripts {

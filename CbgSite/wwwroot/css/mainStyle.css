@@ -1,7 +1,12 @@
 ﻿body {
-    color: white;
+    color: white !important;
     background-color: black;
     font-size: 22px;
+}
+
+
+.navLinks{
+    color: white !important;
 }
 
 .navLinks:hover {
@@ -87,6 +92,11 @@ a:hover {
     box-shadow: 0 1px 0 0 #45ffbb !important
 }
 
+
+input[type="text"]:disabled {
+    color: #cfcfcf !important;
+}
+
 /* switch color style */
 
 .switch label input[type=checkbox]:checked + .lever {
@@ -146,4 +156,3 @@ a:hover {
 .projectLink:hover {
     color: #59ff9c !important
 }
-
