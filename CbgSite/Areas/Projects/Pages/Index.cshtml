@@ -13,26 +13,28 @@
             <h4>@Model.Project.Name</h4>
             <center>
                 <div class="row">
-                    @if (!String.IsNullOrEmpty(Model.Project.LinkTwitter))
-                    {
-                        <div class="col s6">
-                            <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" style="max-width: 64px;" /></a>
-                        </div>
-                    }
-                    @if (!String.IsNullOrEmpty(Model.Project.LinkGithub))
-                    {
-                        <div class="col s6">
-                            <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithub64.png" style="max-width: 64px;" /></a>
-                        </div>
-                    }
+                    <div class="col s12 l12">
+                        @if (!String.IsNullOrEmpty(Model.Project.LinkTwitter))
+                        {
+                            <div class="socialIcon">
+                                <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" style="max-width: 34px;" /></a>
+                            </div>
+                        }
+                        @if (!String.IsNullOrEmpty(Model.Project.LinkGithub))
+                        {
+                            <div class="socialIcon">
+                                <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithub64Light.png" style="max-width: 34px;" /></a>
+                            </div>
+                        }
+                    </div>
                     </div>
             </center>
-            <h6>Summary</h6>
-            <p>@Model.Project.Description</p>
+            <h5 style="color: @Model.Project.Color">Summary</h5>
+            <p style="white-space: pre-line; font-size: 17px;">@Model.Project.Description</p>
             @if (!String.IsNullOrEmpty(Model.Project.DescriptionLong))
             {
-                <h6>Description</h6>
-                <p>@Model.Project.DescriptionLong</p>
+                <h5 style="color: @Model.Project.Color">Description</h5>
+                <p style="white-space: pre-line; font-size: 17px;">@Model.Project.DescriptionLong</p>
             }
         </div>
     </div>
