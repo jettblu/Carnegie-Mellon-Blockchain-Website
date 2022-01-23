@@ -157,6 +157,17 @@ input[type="text"]:disabled {
     color: #59ff9c !important
 }
 
+.socialIcon {
+    width: 48px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    display: inline;
+}
+
+
+
+
 /* toast style */
 
 #toasts {

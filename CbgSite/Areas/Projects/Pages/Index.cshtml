@@ -16,15 +16,11 @@
                     <div class="col s12 l12">
                         @if (!String.IsNullOrEmpty(Model.Project.LinkTwitter))
                         {
-                            <div class="socialIcon">
-                                <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" style="max-width: 34px;" /></a>
-                            </div>
+                                <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" class="socialIcon" /></a>
                         }
                         @if (!String.IsNullOrEmpty(Model.Project.LinkGithub))
                         {
-                            <div class="socialIcon">
-                                <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithub64Light.png" style="max-width: 34px;" /></a>
-                            </div>
+                                <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithubWhite.svg" class="socialIcon"/></a>
                         }
                     </div>
                     </div>
