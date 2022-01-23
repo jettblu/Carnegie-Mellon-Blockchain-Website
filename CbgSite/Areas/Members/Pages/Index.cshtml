@@ -1,36 +1,51 @@
 ﻿@page
 @model CbgSite.Areas.Members.Pages.IndexModel
-@{
-}
+
+@using Microsoft.AspNetCore.Identity
+@using CbgSite.Areas.Identity.Data
+@inject SignInManager<CbgUser> SignInManager
+@inject UserManager<CbgUser> UserManager
+
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<form method="post" data-ajax="true" data-ajax-method="post" data-ajax-complete="completeRole" id="memberRoleForm" asp-page-handler="UpdateRoles" hidden>
+    <input type="text" asp-for="MemberRole" id="memberRole" />
+    <input type="text" asp-for="MemberId" id="memberId" />
+</form>
 
 <div class="" col s12 l10 offset-l1">
     <table>
         <thead>
             <tr>
                 <th>Email</th>
-                <th>Skill</th>
-                <th>Is Available</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var member in Model.Members)
             {
-                <tr>
+                var rolesPossible = Html.GetEnumSelectList<CbgSite.Globals.Roles>();
+
+                var role = await UserManager.GetRolesAsync(member);
+                rolesPossible.First(g => g.Text == role[0]).Selected = true;
+                <tr class="memberRow">
                     <td>
                         @member.UserName
                     </td>
+
                     <td>
-                        ....
+                        <select value="@role" class="browser-default black memberRole" data-id="@member.Id" asp-items="rolesPossible"></select>
                     </td>
-                    <td>
-                        ....
-                    </td>
-                    <td>
-                    </td>
-                    
+
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script src="~/js/MemberManager.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"
+        integrity="sha256-PAC000yuHt78nszJ2RO0OiDMu/uLzPLRlYTk8J3AO10="
+        crossorigin="anonymous"></script>
 
