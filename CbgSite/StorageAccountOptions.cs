@@ -12,6 +12,6 @@ namespace CbgSite
         public string StorageAccountConnectionString { get; set; }
         public string FullImagesContainerNameOption { get; set; }
         public string ScaledImagesContainerNameOption { get; set; }
-        public string AvatarImagesContainerNameOption { get; internal set; }
+        public string AvatarImagesContainerNameOption { get; set; }
     }
 }

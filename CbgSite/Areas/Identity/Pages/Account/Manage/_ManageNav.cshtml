@@ -3,12 +3,27 @@
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
 
+@inject SignInManager<CbgUser> SignInManager
+@inject UserManager<CbgUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var userInfo = UserManager.GetUserAsync(User).Result;
 <div>
 
-    <br />
-    <div class="center-align">
-        <a class="brand-logo left-align" style="margin-left: 5%; margin-top: 1.3%" href="/"><img src="~/media/cbgLogo.png" class="logoSmall" alt="CBG Logo"></a>
-    </div>
+    @if (!string.IsNullOrEmpty(userInfo.ProfilePhotoPath))
+    {
+        <div class="center-align">
+            <img src="@userInfo.ProfilePhotoPath" alt="" class="circle profilePhoto">
+            <h6><a asp-area="Identity" asp-page="/Account/Manage/ProfilePhoto" title="Profile" class="profileFullName">@userInfo.Name</a></h6>
+        </div>
+    }
+    else
+    {
+        <div class="center-align">
+            <a class="brand-logo left-align" style="margin-left: 5%; margin-top: 1.3%" href="/"><img src="~/media/cbgLogo.png" class="logoSmall" alt="CBG Logo"></a>
+        </div>
+    }
     <br />
     <li><a class="@ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
     <li class="nav-item"><a class="@ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
@@ -24,11 +39,14 @@
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                 <button type="submit" class="nav-link btn btn-link grey text-white">Logout</button>
             </form>
-        </center>  
+        </center>
     </li>
     <br />
     <li class="nav-item"><a class="" id="main-site" href="/">&#8592 Main Site</a></li>
 
 
 </div>
+
+}
+
 

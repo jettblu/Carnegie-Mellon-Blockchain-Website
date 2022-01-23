@@ -6,9 +6,17 @@
 
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 
+@inject SignInManager<CbgUser> SignInManager
+@inject UserManager<CbgUser> UserManager
+
+
+@{
+    var userInfo = UserManager.GetUserAsync(User).Result;
+}
+
 
 <center>
-
+    <img src="@userInfo.ProfilePhotoPath" />
     <div class="row">
         <div class="card black horizontal hoverable col l6 s10 offset-s1 offset-l3 " style="border-radius: 25px 25px 25px 25px">
             <div class="row">

@@ -16,7 +16,7 @@ namespace CbgSite.Services
         private readonly StorageAccountOptions _settings;
         private readonly Areas.Identity.Data.CbgUser _user;
         public string BlobURI { get; set; }
-        public string URIBase = "https://crypticblob.blob.core.windows.net/";
+        public string URIBase = "https://siteblob.blob.core.windows.net/";
 
 
         public BlobUtility(StorageAccountOptions settings, Areas.Identity.Data.CbgUser user)
