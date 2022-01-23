@@ -1,0 +1,42 @@
+﻿@page
+@model CbgSite.Areas.Identity.Pages.Account.Manage.ProfilePhotoModel
+@{
+    ViewData["Title"] = "Profile Photo";
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+
+<center>
+
+    <div class="row">
+        <div class="card black horizontal hoverable col l6 s10 offset-s1 offset-l3 " style="border-radius: 25px 25px 25px 25px">
+            <div class="row">
+                <h5>Update Avatar</h5>
+                <form method="post" class="col s12" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="file-field input-field">
+                            <div class="btn btn-file">
+                                <span>File</span>
+                                <input type="file" asp-for="Input.NewPhoto">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input type="text" class="file-path" placeholder="Choose an image" onchange="form.submit()" accept="image/png, image/jpeg">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</center>
+
+
+<script>
+
+</script>

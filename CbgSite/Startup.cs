@@ -41,6 +41,8 @@ namespace CbgSite
                    Configuration["SendGrid:FromName"]
                )
            );
+            
+            services.Configure<StorageAccountOptions>(Configuration.GetSection("StorageAccount"));
 
             // add project manager service
             services.AddTransient<Services.ProjectManager>();

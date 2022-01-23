@@ -189,3 +189,19 @@ input[type="text"]:disabled {
         background-image: linear-gradient(to right, #4ad8ff, #ff4a4a);
         color: white;
     }
+
+
+/*file style*/
+
+
+.btn-file {
+    color: black;
+    background-color: white;
+    border-width: thin;
+    border-color: #00ff99;
+}
+
+.btn-file:hover {
+    color: white;
+    background-color: #00e673;
+}
