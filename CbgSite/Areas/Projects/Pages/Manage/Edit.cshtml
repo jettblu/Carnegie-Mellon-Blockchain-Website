@@ -27,7 +27,9 @@
                     <input type="text" asp-for="Project.ThumbnailPath" />
                     <span asp-validation-for="Project.ThumbnailPath" class="text-danger"></span>
                 </div>
-
+                <div class="input-field col l3 s12" hidden>
+                    <input type="text" asp-for="Project.Id" hidden/>
+                </div>
                 <div class="input-field col l3 s12">
                     <label asp-for="Project.Color">Hex</label>
                     <input type="text" asp-for="Project.Color" />

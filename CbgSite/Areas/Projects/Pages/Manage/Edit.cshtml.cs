@@ -39,7 +39,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostTestUpdateAsync(string id)
+        public async Task<IActionResult> OnPostUpdateAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -47,7 +47,6 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             }
 
             _contextCbg.Attach(Project).State = EntityState.Modified;
-
             try
             {
                 await _contextCbg.SaveChangesAsync();

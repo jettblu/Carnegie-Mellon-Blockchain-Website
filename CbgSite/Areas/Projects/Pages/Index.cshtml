@@ -11,7 +11,13 @@
         </div>
         <div class="projectContent">
             <h4>@Model.Project.Name</h4>
+            <h6>Summary</h6>
             <p>@Model.Project.Description</p>
+            @if (!String.IsNullOrEmpty(Model.Project.DescriptionLong))
+            {
+                <h6>Description</h6>
+                <p>@Model.Project.DescriptionLong</p>
+            }
         </div>
     </div>
 </div>
