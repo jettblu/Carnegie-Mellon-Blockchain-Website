@@ -11,6 +11,22 @@
         </div>
         <div class="projectContent">
             <h4>@Model.Project.Name</h4>
+            <center>
+                <div class="row">
+                    @if (!String.IsNullOrEmpty(Model.Project.LinkTwitter))
+                    {
+                        <div class="col s6">
+                            <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" style="max-width: 64px;" /></a>
+                        </div>
+                    }
+                    @if (!String.IsNullOrEmpty(Model.Project.LinkGithub))
+                    {
+                        <div class="col s6">
+                            <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithub64.png" style="max-width: 64px;" /></a>
+                        </div>
+                    }
+                    </div>
+            </center>
             <h6>Summary</h6>
             <p>@Model.Project.Description</p>
             @if (!String.IsNullOrEmpty(Model.Project.DescriptionLong))
