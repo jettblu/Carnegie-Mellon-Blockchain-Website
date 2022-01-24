@@ -1,0 +1,35 @@
+﻿@page
+@model CbgSite.Areas.Members.Pages.AllModel
+@{
+}
+
+
+<ul class="collection">
+    @foreach (var member in Model.Members)
+    {
+        <li class="collection-item avatar">
+            @if (!string.IsNullOrEmpty(member.ProfilePhotoPath))
+            {
+                <img src="@member.ProfilePhotoPath" alt="memberphoto" class="circle">
+            }
+            else
+            {
+                <img src="~/media/profiles/gradientSquare.jpg" alt="memberphoto placeholder" class="circle">
+            }
+            @if (!string.IsNullOrEmpty(member.Name))
+            {
+                <span class="title">@member.Name</span>
+            }
+            else
+            {
+                <span class="title">CBG Member</span>
+            }
+            <span class="title">Title</span>
+            <p>
+                Student <br>
+                Role
+            </p>
+            @*<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>*@
+        </li>
+    }
+</ul>

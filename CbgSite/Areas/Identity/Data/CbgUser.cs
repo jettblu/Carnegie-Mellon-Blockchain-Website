@@ -13,6 +13,10 @@ namespace CbgSite.Areas.Identity.Data
         public string Name { get; set; }
         [PersonalData]
         public string ProfilePhotoPath { get; set; }
+        public string LinkGithub { get; set; }
+        public string LinkLinkedIn { get; set; }
+        public string LinkTwitter { get; set; }
+        public string AboutMe { get; set; }
         [PersonalData]
         public DateTime DOB { get; set; }
     }
