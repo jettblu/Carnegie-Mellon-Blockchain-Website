@@ -14,7 +14,6 @@
             @foreach (var member in Model.Members)
             {
             <a class="projectLink teal-text" asp-page="./Index" asp-route-id="@member.Id">
-                See More
                 <li class="collection-item avatar black">
                     @if (!string.IsNullOrEmpty(member.ProfilePhotoPath))
                     {

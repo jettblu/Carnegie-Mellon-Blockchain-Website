@@ -238,3 +238,11 @@ input[type="text"]:disabled {
     color: #42c5f5;
     margin-top: 2px
 }
+
+/* indicator text style*/
+
+.headerInfo {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}

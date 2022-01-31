@@ -8,20 +8,52 @@
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
-    <form id="profile-form" method="post">
+    <form id="profile-form" method="post" asp-page-handler="UpdateMember">
+        @*basic info*@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="input-field col l6 s12">
+        @*<div class="input-field col l6 s12">
             <label asp-for="Username"></label>
             <input type="text" asp-for="Username" disabled />
+        </div>*@
+        <div class="input-field col l3 s12" hidden>
+            <input type="text" asp-for="Member.Id" hidden />
+        </div>
+        <div class="input-field col l3 s12" hidden>
+            <input type="text" asp-for="Member.ProfilePhotoPath" hidden />
         </div>
         <div class="input-field col l6 s12">
-            <label asp-for="Input.Name"></label>
-            <input type="text" asp-for="Input.Name" />
+            <label asp-for="Member.Name"></label>
+            <input type="text" asp-for="Member.Name" />
         </div>
-        <div class="input-field offset-l6 col l6 s12">
+        @*bio*@
+        <div class="input-field col l12 s12">
+            <label asp-for="Member.AboutMe">About Me</label>
+            <textarea asp-for="Member.AboutMe" id="aboutMe" placeholder="Who makes you, you..." class="materialize-textarea" data-length="500"></textarea>
+        </div>
+        <br />
+        <div class="col s12">
+            <p class="headerInfo">Social Links</p>
+        </div>
+        @*external links*@
+        <div class="input-field col l4 s12">
+            <label asp-for="Member.LinkGithub">Github</label>
+            <input type="text" asp-for="Member.LinkGithub" />
+        </div>
+        <div class="input-field col l4 s12">
+            <label asp-for="Member.LinkTwitter">Twitter</label>
+            <input type="text" asp-for="Member.LinkTwitter" />
+        </div>
+        <div class="input-field col l4 s12">
+            <label asp-for="Member.LinkLinkedIn">LinkedIn</label>
+            <input type="text" asp-for="Member.LinkLinkedIn" />
+        </div>
+        @*<div class="input-field offset-l6 col l6 s12">
             <label asp-for="Input.PhoneNumber"></label>
             <input type="text" asp-for="Input.PhoneNumber" />
             <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            <button id="update-profile-button" type="submit" class="btn btn-primary right">Save</button>
+        </div>*@
+        <div class="input-field offset-l6 col l6 s12">
             <button id="update-profile-button" type="submit" class="btn btn-primary right">Save</button>
         </div>
 
