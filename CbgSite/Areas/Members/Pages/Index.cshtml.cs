@@ -16,7 +16,7 @@ namespace CbgSite.Areas.Members.Pages
             _contextCbg = contextCbg;
         }
         [BindProperty]
-        public Identity.Data.CbgUser User { get; set; }
+        public Identity.Data.CbgUser Member { get; set; }
         public async Task<IActionResult> OnGet(string id)
         {
             if (id == null)
@@ -24,7 +24,7 @@ namespace CbgSite.Areas.Members.Pages
                 return NotFound();
             }
 
-            User = _contextCbg.Users.FirstOrDefault(u => u.Id == id);
+            Member = _contextCbg.Users.FirstOrDefault(u => u.Id == id);
 
             if (User == null)
             {
