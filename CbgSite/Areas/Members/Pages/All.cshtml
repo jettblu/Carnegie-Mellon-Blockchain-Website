@@ -3,11 +3,18 @@
 @{
 }
 
+<center>
+    <h3>Members</h3>
+</center>
+
+
 <div class="row">
-    <div class="col offset-l2 l8 s8">
+    <div class="col offset-l2 l8 s12">
         <ul class="collection">
             @foreach (var member in Model.Members)
             {
+            <a class="projectLink teal-text" asp-page="./Index" asp-route-id="@member.Id">
+                See More
                 <li class="collection-item avatar black">
                     @if (!string.IsNullOrEmpty(member.ProfilePhotoPath))
                     {
@@ -31,6 +38,7 @@
                     </p>
                     @*<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>*@
                 </li>
+            </a>
             }
         </ul>
     </div>
