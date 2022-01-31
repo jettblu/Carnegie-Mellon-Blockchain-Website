@@ -50,6 +50,15 @@
     -moz-text-fill-color: transparent;
 }
 
+.textGradientRGreen {
+    background-image: linear-gradient(to right, #ffffff, #53e67a);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
 tbody tr:hover {
     background-color: #ff697d
 }

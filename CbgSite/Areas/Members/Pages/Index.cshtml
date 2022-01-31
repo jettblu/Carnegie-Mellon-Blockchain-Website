@@ -8,5 +8,30 @@
 
     <img src="@Model.Member.ProfilePhotoPath" alt="" class="circle profilePhoto">
     <p class="profileFullName">@Model.Member.Name</p>
-
+    <div class="row">
+        <div class="col s12 l12">
+            @if (!String.IsNullOrEmpty(Model.Member.LinkTwitter))
+            {
+                <a href="@Model.Member.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" class="socialIcon" /></a>
+            }
+            @if (!String.IsNullOrEmpty(Model.Member.LinkGithub))
+            {
+                <a href="@Model.Member.LinkGithub"><img src="~/media/social/logoGithubWhite.svg" class="socialIcon" /></a>
+            }
+            @if (!String.IsNullOrEmpty(Model.Member.LinkLinkedIn))
+            {
+                <a href="@Model.Member.LinkLinkedIn"><img src="~/media/social/logoLinkedinBlue.svg" class="socialIcon" /></a>
+            }
+        </div>
 </center>
+
+
+<div class="row">
+    <div class="col s12 l8 offset-l2">
+        @if (!String.IsNullOrEmpty(Model.Member.AboutMe))
+        {
+            <h5 class="textGradientGreen">About Me</h5>
+            <p style="white-space: pre-line; font-size: 18px;">@Model.Member.AboutMe</p>
+        }
+    </div>
+</div>
