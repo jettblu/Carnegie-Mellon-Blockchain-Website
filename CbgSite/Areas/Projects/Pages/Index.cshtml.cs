@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CbgSite.Areas.Identity.Data;
 using CbgSite.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,6 +20,8 @@ namespace CbgSite.Areas.Projects.Pages
         }
         [BindProperty]
         public Data.Project Project { get; set; }
+        [BindProperty]
+        public List<CbgUser> ProjectUsers { get; set; }
         public async Task<IActionResult> OnGet(string id)
         {
             if (id == null)
@@ -27,7 +30,8 @@ namespace CbgSite.Areas.Projects.Pages
             }
 
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
-
+            ProjectUsers = await _projectManager.GetProjectUsers(Project);
+            
             if (Project == null)
             {
                 return NotFound();
