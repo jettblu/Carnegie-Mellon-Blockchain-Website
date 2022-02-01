@@ -21,7 +21,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         private ProjectManager _projectManager { get; set; }
         private CbgSiteContext _contextCbg { get; set; }
         private readonly UserManager<CbgUser> _userManager;
-        public EditModel(Services.ProjectManager projectManager, CbgSiteContext contextCbg, UserManager<CbgUser> userManager)
+        public EditModel(ProjectManager projectManager, CbgSiteContext contextCbg, UserManager<CbgUser> userManager)
         {
             _projectManager = projectManager;
             _contextCbg = contextCbg;
@@ -30,12 +30,15 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         [BindProperty]
         public Data.Project Project { get; set; }
         [BindProperty]
+        public List<CbgUser> ProjectUsers { get; set; }
+        [BindProperty]
         public InputModel Input { get; set; }
 
         public class InputModel
         {
             public string SearchString { get; set; }
             public string SearchStringAsync { get; set; }
+            public string Members { get; set; }
         }
         public async Task<IActionResult> OnGet(string id)
         {
@@ -45,6 +48,13 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             }
 
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
+            ProjectUsers = await _projectManager.GetProjectUsers(Project);
+            // build project user string for form 
+            string projectUserstring = "";
+            foreach (var pu in ProjectUsers)
+            {
+                projectUserstring = projectUserstring + pu.UserName + ",";
+            }
 
             if (Project == null)
             {
@@ -77,6 +87,8 @@ namespace CbgSite.Areas.Projects.Pages.Manage
                     throw;
                 }
             }
+
+            var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
 
             return RedirectToPage("./Index");
         }

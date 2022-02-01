@@ -14,21 +14,34 @@
 
     <div class="row">
         <div class="card col s12 l8 offset-l2 rounded black">
+            <div id="memberPhotos">
+                @foreach (var puser in Model.ProjectUsers)
+                {
+                    <div class="chip">
+                        <img src="@puser.ProfilePhotoPath" alt="Project Manager">
+                        @puser.Name
+                    </div>
+                }
+            </div>
+            <div class="col s12 l8 offset-l2 inputBox">
+                <span class="labelFor">Creators:</span>
+                <div class="input-field inline">
+                    <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
+                    <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                        <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
+                    </form>
+                </div>
+            </div>
+            <div id="searchMemberContainer">
+
+            </div>
             <form method="post" asp-page-handler="Update">
+                <input type="hidden" id="mainMembers" asp-for="Input.Members" />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="input-field col l8 offset-l2 s12">
                     <label asp-for="Project.Name">Name</label>
                     <input type="text" asp-for="Project.Name" />
                     <span asp-validation-for="Project.Name" class="text-danger"></span>
-                </div>
-                <div class="col s12 l8 offset-l2 inputBox">
-                    <span class="labelFor">Creators:</span>
-                    <div class="input-field inline">
-                        <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
-                        <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
-                            <input id="creators" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
-                        </form>
-                    </div>
                 </div>
                 <div class="input-field col offset-l2 l5 s12">
                     <label asp-for="Project.ThumbnailPath">Image Path</label>
@@ -36,7 +49,7 @@
                     <span asp-validation-for="Project.ThumbnailPath" class="text-danger"></span>
                 </div>
                 <div class="input-field col l3 s12" hidden>
-                    <input type="text" asp-for="Project.Id" hidden/>
+                    <input type="text" asp-for="Project.Id" hidden />
                 </div>
                 <div class="input-field col l3 s12">
                     <label asp-for="Project.Color">Hex</label>
@@ -97,3 +110,8 @@
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>
+
+<script src="~/js/SearchManager.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"
+        integrity="sha256-PAC000yuHt78nszJ2RO0OiDMu/uLzPLRlYTk8J3AO10="
+        crossorigin="anonymous"></script>

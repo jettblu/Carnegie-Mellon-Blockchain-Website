@@ -41,5 +41,34 @@ namespace CbgSite.Services
             }
             return resultUsers;
         }
+
+        public async Task<Globals.Status> AddProjectUsersFromString(string userString, Areas.Projects.Data.Project project)
+        {
+            var projectMemberNames = userString.Split(",");
+            List<CbgUser> projectUsers = new List<CbgUser>();
+            foreach (var uname in projectMemberNames)
+            {
+                var user = await _userManager.FindByNameAsync(uname);
+                projectUsers.Add(user);
+                var projectUserNew = new Areas.Projects.Data.ProjectUser()
+                {
+                    ProjectId = project.Id,
+                    CbgUserId = user.Id
+                };
+                if (!ProjectUserExists(projectUserNew))
+                {
+                    _contextCbg.ProjectUsers.Add(projectUserNew);
+                }
+            }
+
+            _contextCbg.SaveChanges();
+            return Globals.Status.Success;
+        }
+
+
+        private bool ProjectUserExists(Areas.Projects.Data.ProjectUser projectUser)
+        {
+            return _contextCbg.ProjectUsers.Any(e => e.ProjectId == projectUser.ProjectId && e.CbgUserId == projectUser.CbgUserId);
+        }
     }
 }

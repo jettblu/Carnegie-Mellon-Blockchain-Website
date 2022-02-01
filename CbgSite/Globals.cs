@@ -13,5 +13,12 @@ namespace CbgSite
             Admin,
             Basic
         }
+        public enum Status
+        {
+            Success = 0,
+            Failure = 1,
+            Pending = 2,
+            Done = 3
+        }
     }
 }

@@ -1,0 +1,45 @@
+﻿@using CbgSite.Data
+
+@model SearchData
+
+
+@{
+
+    // handle null model
+    if (Model == null || Model.Query == null) return;
+
+    if (Model.Users.Count != 0)
+    {
+        foreach (var currUser in Model.Users)
+        {
+            <a class="userToSelect" data-user="@currUser.UserName" data-photo="@currUser.ProfilePhotoPath" data-name="@currUser.Name">
+                <div class="col s10 l6 offset-l3 offset-s1 card hoverable black">
+
+                    <div class="col s1 l1">
+
+                        <img src="@currUser.ProfilePhotoPath" alt="user photo" class="circle profilePhotoSearch">
+
+                    </div>
+
+                    <div class="col s4 l4 offset-l1 offset-s2" style="padding-left: 0px; padding-top: 0px">
+                        <span class="searchUserFullName">@currUser.Name</span>
+                        <h6 class="searchUsertag">@currUser.UserName</h6>
+                    </div>
+                </div>
+            </a>
+        }
+
+    }
+    else
+    {
+        // don't display anything if query is blank
+
+        if (Model.Query.Length == 0) return;
+        <a>
+            <div class="col s10 l6 offset-l3 offset-s1 card hoverable">
+                <p class="info-header">No results for "@Model.Query".</p>
+                <p>Search for members using their name or username.</p>
+            </div>
+        </a>
+    }
+}

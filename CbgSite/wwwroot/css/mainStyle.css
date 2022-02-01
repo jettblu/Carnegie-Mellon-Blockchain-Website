@@ -255,3 +255,44 @@ input[type="text"]:disabled {
     font-size: 16px;
     color: white;
 }
+
+/* search style*/
+
+.searchBox {
+    padding: 7px;
+    border-radius: 25px 25px 25px 25px;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+}
+
+
+    .searchBox:hover {
+        border-color: #00b6ff;
+    }
+
+
+.searchUserResult {
+    color: aquamarine;
+    display: inline;
+    float: left
+}
+
+.searchUserTag {
+    color: aquamarine;
+    font-size: 14px;
+    font-weight: lighter;
+    margin-left: 5px;
+}
+
+.searchUserFullName {
+    color: aquamarine;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profilePhotoSearch {
+    max-width: 50px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
