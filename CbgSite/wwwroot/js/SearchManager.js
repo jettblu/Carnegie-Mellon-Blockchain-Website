@@ -30,7 +30,6 @@ $("#searchMemberContainer").on('click', ".userToSelect", function () {
     // reset search query to empty
     $("#searchQuery").val("");
     console.log(userName);
-    $("#searchMemberContainer").hide("slow");
     $("#searchMemberContainer").empty();
     $("#memberPhotos").append(`<div class="chip">
                         <img src="${profilePhotoPath}" alt="Member photo">
