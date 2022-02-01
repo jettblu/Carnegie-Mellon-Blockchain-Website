@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CbgSite.Areas.Identity.Data;
+using CbgSite.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +15,16 @@ namespace CbgSite.Services
         {
             var extension = Path.GetExtension(fileName);
             return _ValidExtensions.Contains(extension.ToLower());
+        }
+
+
+        public static List<CbgUser> SearchUsers(CbgUser user, CbgSiteContext context, string query, int amount = 0)
+        {
+            var users = from m in context.Users
+                        select m;
+
+            // match username, username, or number based on query. Exclude current user from result
+            return users.Where(s => (s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)) && s.UserName != user.UserName).ToList();
         }
     }
 }

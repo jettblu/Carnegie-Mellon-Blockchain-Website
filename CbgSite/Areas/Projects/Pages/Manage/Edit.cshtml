@@ -21,7 +21,15 @@
                     <input type="text" asp-for="Project.Name" />
                     <span asp-validation-for="Project.Name" class="text-danger"></span>
                 </div>
-
+                <div class="col s12 l8 offset-l2 inputBox">
+                    <span class="labelFor">Creators:</span>
+                    <div class="input-field inline">
+                        <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
+                        <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                            <input id="creators" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
+                        </form>
+                    </div>
+                </div>
                 <div class="input-field col offset-l2 l5 s12">
                     <label asp-for="Project.ThumbnailPath">Image Path</label>
                     <input type="text" asp-for="Project.ThumbnailPath" />
