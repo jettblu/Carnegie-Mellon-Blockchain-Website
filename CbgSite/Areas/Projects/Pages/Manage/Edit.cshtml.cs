@@ -50,12 +50,12 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
             ProjectUsers = await _projectManager.GetProjectUsers(Project);
             // build project user string for form 
-            string projectUserstring = "";
+            /*string projectUserstring = "";
             foreach (var pu in ProjectUsers)
             {
                 projectUserstring = projectUserstring + pu.UserName + ",";
             }
-
+*/
             if (Project == null)
             {
                 return NotFound();
@@ -89,6 +89,8 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             }
 
             var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
+
+            if(updateprojectUsersRes != Globals.Status.Success) StatusMessage = 
 
             return RedirectToPage("./Index");
         }

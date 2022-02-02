@@ -9,13 +9,29 @@
 
 <h4>Project</h4>
 <hr />
-
+<partial name="_StatusMessage" model="Model.StatusMessage" />
 <center>
 
     <div class="row">
         <div class="card col s12 l8 offset-l2 rounded black">
-            <form method="post">
+            @*start project member add and tag*@
+            <div id="memberPhotos">
 
+            </div>
+            <div class="col s12 l8 offset-l2 inputBox">
+                <span class="labelFor">Creators:</span>
+                <div class="input-field inline">
+                    <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
+                    <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                        <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
+                    </form>
+                </div>
+            </div>
+            <div id="searchMemberContainer">
+
+            </div>
+            @*end project member add and tag*@
+            <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="input-field col l8 offset-l2 s12">
                     <label asp-for="Project.Name">Name</label>

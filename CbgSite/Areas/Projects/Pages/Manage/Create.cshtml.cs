@@ -28,6 +28,17 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         }
         [BindProperty]
         public Data.Project Project { get; set; }
+        [TempData]
+        public string StatusMessage { get; set; }
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            public string SearchString { get; set; }
+            public string SearchStringAsync { get; set; }
+            public string Members { get; set; }
+        }
         public void OnGet()
         {
         }
