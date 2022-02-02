@@ -34,8 +34,10 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         [TempData]
         public string StatusMessage { get; set; }
         [BindProperty]
+        public bool IsAuthorized { get; set; }
+        [BindProperty]
         public InputModel Input { get; set; }
-
+        
         public class InputModel
         {
             public string SearchString { get; set; }
@@ -48,14 +50,20 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         }
         public async Task<IActionResult> OnGet(string id)
         {
+            IsAuthorized = false;
             if (id == null)
             {
                 return NotFound();
             }
-
+            var user = await _userManager.GetUserAsync(User);
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
             ProjectUsers = await _projectManager.GetProjectUsers(Project);
-
+            // toggle authorization based on custom parameters
+            var isSuperAdmin = await _userManager.IsInRoleAsync(user, Globals.Roles.SuperAdmin.ToString());
+            if (isSuperAdmin || ProjectUsers.Contains(user))
+            {
+                IsAuthorized = true;
+            }
             Input = new InputModel();
             
             // build project user string for form 

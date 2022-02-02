@@ -11,103 +11,114 @@
 <h4>Project</h4>
 <hr />
 
-<center>
-    <div class="row">
-        <div class="card col s12 l8 offset-l2 rounded black">
-            <div id="memberPhotos">
-                @foreach (var puser in Model.ProjectUsers)
-                {
-                    <div class="chip green">
-                        <img src="@puser.ProfilePhotoPath" alt="Project Manager">
-                        @puser.Name
+@{
+    if (Model.IsAuthorized)
+    {
+        <center>
+            <div class="row">
+                <div class="card col s12 l8 offset-l2 rounded black">
+                    <div id="memberPhotos">
+                        @foreach (var puser in Model.ProjectUsers)
+                        {
+                            <div class="chip green">
+                                <img src="@puser.ProfilePhotoPath" alt="Project Manager">
+                                @puser.Name
+                            </div>
+                        }
                     </div>
-                }
-            </div>
-            <div class="col s12 l8 offset-l2 inputBox">
-                <span class="labelFor">Creators:</span>
-                <div class="input-field inline">
-                    <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
-                    <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
-                        <input type="hidden" id="searchMembers" asp-for="Input.MembersOnQuery" />
-                        <input type="hidden" id="loadhMembers" asp-for="Input.MembersOnLoad" />
-                        <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
-                    </form>
-                </div>
-            </div>
-            <div id="searchMemberContainer">
+                    <div class="col s12 l8 offset-l2 inputBox">
+                        <span class="labelFor">Creators:</span>
+                        <div class="input-field inline">
+                            <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
+                            <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                                <input type="hidden" id="searchMembers" asp-for="Input.MembersOnQuery" />
+                                <input type="hidden" id="loadhMembers" asp-for="Input.MembersOnLoad" />
+                                <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
+                            </form>
+                        </div>
+                    </div>
+                    <div id="searchMemberContainer">
 
-            </div>
-            <form method="post" asp-page-handler="Update">
-                <input type="hidden" id="mainMembers" asp-for="Input.Members" />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="input-field col l8 offset-l2 s12">
-                    <label asp-for="Project.Name">Name</label>
-                    <input type="text" asp-for="Project.Name" />
-                    <span asp-validation-for="Project.Name" class="text-danger"></span>
-                </div>
-                <div class="input-field col offset-l2 l5 s12">
-                    <label asp-for="Project.ThumbnailPath">Image Path</label>
-                    <input type="text" asp-for="Project.ThumbnailPath" />
-                    <span asp-validation-for="Project.ThumbnailPath" class="text-danger"></span>
-                </div>
-                <div class="input-field col l3 s12" hidden>
-                    <input type="text" asp-for="Project.Id" hidden />
-                </div>
-                <div class="input-field col l3 s12">
-                    <label asp-for="Project.Color">Hex</label>
-                    <input type="text" asp-for="Project.Color" />
-                    <span asp-validation-for="Project.Color" class="text-danger"></span>
-                </div>
-                <div class="input-field offset-l2 col l4 s12">
-                    <label asp-for="Project.LinkGithub">GitHub</label>
-                    <input type="text" asp-for="Project.LinkGithub" />
-                    <span asp-validation-for="Project.LinkGithub" class="text-danger"></span>
-                </div>
-                <div class="input-field col l4 s12">
-                    <label asp-for="Project.LinkTwitter">Twitter</label>
-                    <input type="text" asp-for="Project.LinkTwitter" />
-                    <span asp-validation-for="Project.LinkTwitter" class="text-danger"></span>
-                </div>
-
-                <div class="input-field col l8 offset-l2 s12">
-                    <label asp-for="Project.Description">Short Description</label>
-                    <textarea asp-for="Project.Description" id="descriptionShort" placeholder="Quick project description..." class="materialize-textarea"></textarea>
-                </div>
-                <div class="input-field col l8 offset-l2 s12">
-                    <label asp-for="Project.DescriptionLong">Long Description</label>
-                    <textarea asp-for="Project.DescriptionLong" id="descriptionLong" placeholder="Extended project description..." class="materialize-textarea"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 l12 m12">
-                        <!-- Switch -->
-                        <div class="switch">
-                            <label>
-                                <span id="IsPublic">
-                                    Private
-                                </span>
-                                <input type="checkbox" align="center" id="authSwitch" asp-for="Project.IsPublic">
-                                <span class="lever"></span>
-                                <span id="authOffLabel">
-                                    Public
-                                </span>
-                            </label>
+                    </div>
+                    <form method="post" asp-page-handler="Update">
+                        <input type="hidden" id="mainMembers" asp-for="Input.Members" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="input-field col l8 offset-l2 s12">
+                            <label asp-for="Project.Name">Name</label>
+                            <input type="text" asp-for="Project.Name" />
+                            <span asp-validation-for="Project.Name" class="text-danger"></span>
+                        </div>
+                        <div class="input-field col offset-l2 l5 s12">
+                            <label asp-for="Project.ThumbnailPath">Image Path</label>
+                            <input type="text" asp-for="Project.ThumbnailPath" />
+                            <span asp-validation-for="Project.ThumbnailPath" class="text-danger"></span>
+                        </div>
+                        <div class="input-field col l3 s12" hidden>
+                            <input type="text" asp-for="Project.Id" hidden />
+                        </div>
+                        <div class="input-field col l3 s12">
+                            <label asp-for="Project.Color">Hex</label>
+                            <input type="text" asp-for="Project.Color" />
+                            <span asp-validation-for="Project.Color" class="text-danger"></span>
+                        </div>
+                        <div class="input-field offset-l2 col l4 s12">
+                            <label asp-for="Project.LinkGithub">GitHub</label>
+                            <input type="text" asp-for="Project.LinkGithub" />
+                            <span asp-validation-for="Project.LinkGithub" class="text-danger"></span>
+                        </div>
+                        <div class="input-field col l4 s12">
+                            <label asp-for="Project.LinkTwitter">Twitter</label>
+                            <input type="text" asp-for="Project.LinkTwitter" />
+                            <span asp-validation-for="Project.LinkTwitter" class="text-danger"></span>
                         </div>
 
-                    </div>
+                        <div class="input-field col l8 offset-l2 s12">
+                            <label asp-for="Project.Description">Short Description</label>
+                            <textarea asp-for="Project.Description" id="descriptionShort" placeholder="Quick project description..." class="materialize-textarea"></textarea>
+                        </div>
+                        <div class="input-field col l8 offset-l2 s12">
+                            <label asp-for="Project.DescriptionLong">Long Description</label>
+                            <textarea asp-for="Project.DescriptionLong" id="descriptionLong" placeholder="Extended project description..." class="materialize-textarea"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12 l12 m12">
+                                <!-- Switch -->
+                                <div class="switch">
+                                    <label>
+                                        <span id="IsPublic">
+                                            Private
+                                        </span>
+                                        <input type="checkbox" align="center" id="authSwitch" asp-for="Project.IsPublic">
+                                        <span class="lever"></span>
+                                        <span id="authOffLabel">
+                                            Public
+                                        </span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="input-field">
+                            <input type="submit" value="Update" class="btn btnPrimary" />
+                        </div>
+                    </form>
+                    <br>
+                    <br>
                 </div>
+            </div>
 
+        </center>
+    }
+    else
+    {
+        // display not authorized partial if not authorized
+        <partial name="_notAuthorized"/>
+    }
+}
 
-                <div class="input-field">
-                    <input type="submit" value="Update" class="btn btnPrimary" />
-                </div>
-            </form>
-            <br>
-            <br>
-        </div>
-    </div>
-
-</center>
 
 <div>
     <a asp-page="./Index">Back to List</a>
