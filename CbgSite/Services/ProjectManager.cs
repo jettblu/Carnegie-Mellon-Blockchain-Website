@@ -33,7 +33,7 @@ namespace CbgSite.Services
         public async Task<List<CbgUser>> GetProjectUsers(Areas.Projects.Data.Project project)
         {
             var projectUsers =  _contextCbg.ProjectUsers.Where(p => p.ProjectId == project.Id);
-            List<CbgUser> resultUsers = new List<Areas.Identity.Data.CbgUser>();
+            List<CbgUser> resultUsers = new List<CbgUser>();
             foreach (var pu in projectUsers)
             {
                 var user = await _userManager.FindByIdAsync(pu.CbgUserId);
@@ -64,6 +64,7 @@ namespace CbgSite.Services
             _contextCbg.SaveChanges();
             return Globals.Status.Success;
         }
+
 
 
         private bool ProjectUserExists(Areas.Projects.Data.ProjectUser projectUser)

@@ -23,6 +23,7 @@
                 <div class="input-field inline">
                     <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
                     <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                        <input type="hidden" id="searchMembers" asp-for="Input.MembersOnQuery" />
                         <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
                     </form>
                 </div>
@@ -104,3 +105,9 @@
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
+
+
+<script src="~/js/SearchManager.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"
+        integrity="sha256-PAC000yuHt78nszJ2RO0OiDMu/uLzPLRlYTk8J3AO10="
+        crossorigin="anonymous"></script>

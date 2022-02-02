@@ -20,10 +20,8 @@ namespace CbgSite.Services
 
         public static List<CbgUser> SearchUsers(CbgUser user, CbgSiteContext context, string query, int amount = 0)
         {
-            
-
             // match username, username, or number based on query. Exclude current user from result
-            return context.Users.Where(s => (s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
+            return context.Users.Where(s => (s!= user && s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
             || s.Email.Contains(query))).ToList();
         }
     }

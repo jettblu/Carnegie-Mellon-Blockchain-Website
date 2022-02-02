@@ -28,6 +28,8 @@
                 <div class="input-field inline">
                     <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
                     <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchMembersResult" asp-page-handler="SearchUsers">
+                        <input type="hidden" id="searchMembers" asp-for="Input.MembersOnQuery" />
+                        <input type="hidden" id="loadhMembers" asp-for="Input.MembersOnLoad" />
                         <input id="members" data-selected="false" type="text" placeholder="Project Members" class="validate align-right" asp-for="Input.SearchStringAsync">
                     </form>
                 </div>

@@ -31,6 +31,8 @@ namespace CbgSite.Areas.Projects.Pages.Manage
         public Data.Project Project { get; set; }
         [BindProperty]
         public List<CbgUser> ProjectUsers { get; set; }
+        [TempData]
+        public string StatusMessage { get; set; }
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -39,6 +41,10 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             public string SearchString { get; set; }
             public string SearchStringAsync { get; set; }
             public string Members { get; set; }
+            // current selected members when user makes a query
+            public string MembersOnQuery { get; set; }
+            // project members on page load
+            public string MembersOnLoad { get; set; }
         }
         public async Task<IActionResult> OnGet(string id)
         {
@@ -49,13 +55,15 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
             ProjectUsers = await _projectManager.GetProjectUsers(Project);
+
+            Input = new InputModel();
+            
             // build project user string for form 
-            /*string projectUserstring = "";
             foreach (var pu in ProjectUsers)
             {
-                projectUserstring = projectUserstring + pu.UserName + ",";
+                Input.MembersOnLoad = Input.MembersOnLoad + pu.UserName + ",";
             }
-*/
+
             if (Project == null)
             {
                 return NotFound();
@@ -90,7 +98,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
             var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
 
-            if(updateprojectUsersRes != Globals.Status.Success) StatusMessage = 
+            if (updateprojectUsersRes != Globals.Status.Success) StatusMessage = "Unable to add project managers";
 
             return RedirectToPage("./Index");
         }
@@ -119,6 +127,27 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
             // match customer name, username, or number based on query
             var users = Utils.SearchUsers(user, _contextCbg, query);
+            if (!string.IsNullOrEmpty(Input.MembersOnQuery))
+            {
+                // remove users from search result if already selected
+                var projectMemberNames = Input.MembersOnQuery.Split(",");
+                foreach (var uname in projectMemberNames)
+                {
+                    var userToRemove = await _userManager.FindByNameAsync(uname);
+                    users.Remove(userToRemove);
+                }
+            }
+            // remove users from search result if already in db with project
+            if (!string.IsNullOrEmpty(Input.MembersOnLoad))
+            {
+                // remove users from search result if already selected
+                var projectMemberNames = Input.MembersOnLoad.Split(",");
+                foreach (var uname in projectMemberNames)
+                {
+                    var userToRemove = await _userManager.FindByNameAsync(uname);
+                    users.Remove(userToRemove);
+                }
+            }
 
             var searchModel = new SearchData()
             {

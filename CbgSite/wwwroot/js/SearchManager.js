@@ -5,6 +5,7 @@
 });
 
 $("#clearIcon").on('click', function () {
+    console.log("Clear icon clicked!");
     $("#searchQuery").val("");
     $("#searchMemberContainer").empty();
     $(this).hide();
@@ -26,6 +27,7 @@ $("#searchMemberContainer").on('click', ".userToSelect", function () {
     }
     console.log("New project members value:")
     console.log(newValMembers);
+    $("#searchMembers").val(newValMembers);
     $("#mainMembers").val(newValMembers);
     // reset search query to empty
     $("#searchQuery").val("");
@@ -58,5 +60,6 @@ ShowSearchMembersResult = function (res) {
 
 
 $(document).ready(function () {
+    $("#searchMembers").val("");
     $("#mainMembers").val("");
 })
