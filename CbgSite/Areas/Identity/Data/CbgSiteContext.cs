@@ -13,6 +13,8 @@ namespace CbgSite.Data
     {
         public DbSet<Areas.Projects.Data.Project> Projects { get; set; }
         public DbSet<Areas.Projects.Data.ProjectUser> ProjectUsers { get; set; }
+        public DbSet<Areas.Members.Data.Tag> Tags { get; set; }
+        public DbSet<Areas.Members.Data.TagUser> TagUsers { get; set; }
         public CbgSiteContext(DbContextOptions<CbgSiteContext> options)
             : base(options)
         {
