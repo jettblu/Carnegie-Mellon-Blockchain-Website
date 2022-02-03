@@ -45,7 +45,8 @@ namespace CbgSite.Areas.Identity.Pages.Account
             DisplayConfirmAccountLink = false;
 
             // initiate confirmation 
-            var userId = await _userManager.GetUserIdAsync(user);
+
+           /* var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             EmailConfirmationUrl = Url.Page(
@@ -55,7 +56,7 @@ namespace CbgSite.Areas.Identity.Pages.Account
                 protocol: Request.Scheme);
             var messageConfirm = $"Please click the following link to verfiy your account: {EmailConfirmationUrl}";
             // send confirmation email
-            await _sender.SendEmailAsync(email, "Confirm CBG Account", messageConfirm);
+            await _sender.SendEmailAsync(email, "Confirm CBG Account", messageConfirm);*/
 
             return Page();
         }

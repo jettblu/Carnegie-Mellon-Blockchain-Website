@@ -16,10 +16,12 @@ namespace CbgSite.Areas.Identity.Pages.Account
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<CbgUser> _userManager;
+        private readonly SignInManager<CbgUser> _signInManager;
 
-        public ConfirmEmailModel(UserManager<CbgUser> userManager)
+        public ConfirmEmailModel(UserManager<CbgUser> userManager, SignInManager<CbgUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [TempData]
@@ -42,6 +44,12 @@ namespace CbgSite.Areas.Identity.Pages.Account
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
             IsConfirmed = result.Succeeded ? true : false;
+
+            // login if confirmed
+            if (IsConfirmed)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: true);
+            }
 
             /*StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";*/
             return Page();
