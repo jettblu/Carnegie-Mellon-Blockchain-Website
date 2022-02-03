@@ -33,5 +33,17 @@
             <h5 class="textGradientGreen">About Me</h5>
             <p style="white-space: pre-line; font-size: 18px;">@Model.Member.AboutMe</p>
         }
+        else
+        {
+            <p>I haven't updated my profile yet, but don't worry! I will soon. For now, enjoy this crypto meme:</p>
+            <img class="responsive-img" src="~/media/memes/web3.png" />
+        }
+        <br />
+        @if (!String.IsNullOrEmpty(Model.Member.LinkTwitter))
+        {
+            var embedLinkTwitter = Model.Member.LinkTwitter + "?ref_src=twsrc%5Etfw";
+            <a class="twitter-timeline" data-theme="dark" href=@embedLinkTwitter>Tweets by @Model.Member.Name</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        }
     </div>
 </div>

@@ -3,6 +3,7 @@
 
 @using Microsoft.AspNetCore.Identity
 @using CbgSite.Areas.Identity.Data
+@using CbgSite;
 @inject SignInManager<CbgUser> SignInManager
 @inject UserManager<CbgUser> UserManager
 
@@ -27,15 +28,26 @@
             {
                 var rolesPossible = Html.GetEnumSelectList<CbgSite.Globals.Roles>();
 
-                var role = await UserManager.GetRolesAsync(member);
-                rolesPossible.First(g => g.Text == role[0]).Selected = true;
+                var roles = await UserManager.GetRolesAsync(member);
+                if (roles.Count != 0)
+                {
+                    rolesPossible.First(g => g.Text == roles[0]).Selected = true;
+                }
+                else
+                {
+                    var result = await UserManager.AddToRoleAsync(member, Globals.Roles.Basic.ToString());
+                    if (result.Succeeded)
+                    {
+                        rolesPossible.First(g => g.Text == Globals.Roles.Basic.ToString()).Selected = true;
+                    }
+                }
                 <tr class="memberRow">
                     <td>
                         @member.UserName
                     </td>
 
                     <td>
-                        <select value="@role" class="browser-default black memberRole" data-id="@member.Id" asp-items="rolesPossible"></select>
+                        <select class="browser-default black memberRole" data-id="@member.Id" asp-items="rolesPossible"></select>
                     </td>
 
                 </tr>
