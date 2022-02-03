@@ -6,4 +6,17 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+@*<partial name="_StatusMessage" model="Model.StatusMessage" />*@
+
+
+@{
+    if (Model.IsConfirmed)
+    {
+        <p>Thank you for confirming your email. Continue setting up your account <a asp-area="Identity" asp-page="Manage/Index">here</a>.</p>
+    }
+    else
+    {
+        <p>There was an error confirming your email.</p>
+        <p>If you believe there is a mistake, please contact <a href="mailto:jehays@andrew.cmu.edu?subject = CBG Page Access">the crypto wizard</a>.</p>
+    }
+}

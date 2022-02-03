@@ -18,6 +18,7 @@ namespace CbgSite.Data
         public CbgSiteContext(DbContextOptions<CbgSiteContext> options)
             : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
