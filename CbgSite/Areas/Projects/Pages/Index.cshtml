@@ -44,6 +44,14 @@
                 <h5 style="color: @Model.Project.Color">Description</h5>
                 <p style="white-space: pre-line; font-size: 18px;">@Model.Project.DescriptionLong</p>
             }
+            @if (Model.IsCreator)
+            {
+                <br />
+                <br />
+                <div class="align-right">
+                    <a asp-page="./Manage/Edit" asp-route-id="@Model.Project.Id">Edit</a>
+                </div>
+            }
         </div>
     </div>
 </div>
