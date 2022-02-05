@@ -1,0 +1,38 @@
+﻿@using CbgSite.Data
+
+@model SearchTagData
+
+
+@{
+
+    // handle null model
+    if (Model == null || Model.Query == null) return;
+
+    if (Model.Tags.Count != 0)
+    {
+        foreach (var tag in Model.Tags)
+        {
+            <a class="tagToSelect" data-id="@tag.Id" data-name="@tag.Content">
+                <div class="col s10 l6 offset-l3 offset-s1 card hoverable black">
+                    <div class="col s4 l4 offset-l1 offset-s2" style="padding-left: 0px; padding-top: 0px">
+                        <span class="textGradientRGreen">@tag.Content</span>
+                    </div>
+                </div>
+            </a>
+        }
+
+    }
+    else
+    {
+        // don't display anything if query is blank
+
+        if (Model.Query.Length == 0) return;
+        <a class="tagToSelect" data-id="na" data-name="@Model.Query">
+            <div class="col s10 l6 offset-l3 offset-s1 card hoverable black">
+                <div class="col s4 l4 offset-l1 offset-s2" style="padding-left: 0px; padding-top: 0px">
+                    <span class="textGradientRGreen">@Model.Query</span>
+                </div>
+            </div>
+        </a>
+    }
+}

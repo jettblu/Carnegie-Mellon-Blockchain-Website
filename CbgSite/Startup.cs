@@ -46,6 +46,8 @@ namespace CbgSite
 
             // add project manager service
             services.AddTransient<Services.ProjectManager>();
+            // add tag manager service
+            services.AddTransient<TagManager>();
             services.AddRazorPages();
         }
 
