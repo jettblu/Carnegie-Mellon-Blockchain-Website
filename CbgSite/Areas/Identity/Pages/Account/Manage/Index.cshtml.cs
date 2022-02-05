@@ -85,7 +85,7 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            Tags = _tagManager.GetTagUsers(user);
+            Tags = _tagManager.GetUserTags(user);
             // build tag string for form 
             Input = new InputModel();
             foreach (var t in Tags)

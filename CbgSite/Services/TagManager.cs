@@ -16,7 +16,8 @@ namespace CbgSite.Services
             _contextCbg = contextCbg;
             _userManager = userManager;
         }
-        public List<Areas.Members.Data.Tag> GetTagUsers(CbgUser user)
+        // return s all tags associated with user
+        public List<Areas.Members.Data.Tag> GetUserTags(CbgUser user)
         {
             var tagUsers = _contextCbg.TagUsers.Where(p => p.CbgUserId == user.Id);
             List<Areas.Members.Data.Tag> resultTags = new List<Areas.Members.Data.Tag>();
@@ -106,8 +107,8 @@ namespace CbgSite.Services
             // catch errors in call function
             if (TagUserExists(tagUser))
             {
-                _contextCbg.TagUsers.Attach(tagUser);
-                _contextCbg.TagUsers.Remove(tagUser);
+                var tagUserToRemove = GetTagUser(user, tagId);
+                _contextCbg.TagUsers.Remove(tagUserToRemove);
                 _contextCbg.SaveChanges();
             }
         }
@@ -115,6 +116,10 @@ namespace CbgSite.Services
         public Areas.Members.Data.Tag GetTagById(string tagId)
         {
             return _contextCbg.Tags.Where(t => t.Id == tagId).FirstOrDefault();
+        }
+        public Areas.Members.Data.TagUser GetTagUser(CbgUser user, string tagId)
+        {
+            return _contextCbg.TagUsers.Where(tu => tu.TagId == tagId && tu.CbgUserId == user.Id).FirstOrDefault();
         }
 
         private bool TagExists(string tagId)

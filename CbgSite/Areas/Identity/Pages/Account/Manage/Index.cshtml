@@ -12,9 +12,9 @@
         @*basic info*@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @*<div class="input-field col l6 s12">
-            <label asp-for="Username"></label>
-            <input type="text" asp-for="Username" disabled />
-        </div>*@
+                <label asp-for="Username"></label>
+                <input type="text" asp-for="Username" disabled />
+            </div>*@
         <div class="input-field col l3 s12" hidden>
             <input type="text" asp-for="Member.Id" hidden />
         </div>
@@ -48,16 +48,21 @@
             <input type="text" asp-for="Member.LinkLinkedIn" />
         </div>
         @*<div class="input-field offset-l6 col l6 s12">
-            <label asp-for="Input.PhoneNumber"></label>
-            <input type="text" asp-for="Input.PhoneNumber" />
-            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            <button id="update-profile-button" type="submit" class="btn btn-primary right">Save</button>
-        </div>*@
+                <label asp-for="Input.PhoneNumber"></label>
+                <input type="text" asp-for="Input.PhoneNumber" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <button id="update-profile-button" type="submit" class="btn btn-primary right">Save</button>
+            </div>*@
         <input type="hidden" id="mainTags" asp-for="Input.Tags" />
         <div class="input-field offset-l6 col l6 s12">
             <button id="update-profile-button" type="submit" class="btn btn-primary right">Save</button>
         </div>
-        <div id="tagChips">
+    </form>
+    <div class="col s12 l12">
+        <hr />
+        <br />
+        <p>What aspects of crypto are you interested in? When you add your interests, you will be matched with students and employers for personalized projects and education.</p>
+        <div id="tagChips" class="col l12 s12">
             @foreach (var tag in Model.Tags)
             {
                 <div class="chip" data-id="@tag.Id">
@@ -66,22 +71,13 @@
                 </div>
             }
         </div>
-    </form>
-    <div class="col s12 l8 inputBox">
         <span class="labelFor">Interests:</span>
         <div class="input-field inline">
             <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
             <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchTagsResult" asp-page-handler="SearchTags">
                 <input type="hidden" id="searchTags" asp-for="Input.TagsOnQuery" />
                 <input type="hidden" id="loadTags" asp-for="Input.TagsOnLoad" />
-                <div class="input-field col l2 s12">
-                    <input id="tags" data-selected="false" type="text" placeholder="Bitcoin, Defi, etc." class="validate align-right" asp-for="Input.SearchStringAsync">
-                </div>
-                <div class="col l6 s12">
-                    <div id="searchTagContainer">
-
-                    </div>
-                </div>
+                <input id="tags" data-selected="false" type="text" placeholder="Bitcoin, Defi, etc." class="validate align-right" asp-for="Input.SearchStringAsync">
             </form>
             <form method="post" id="addTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="AddTagResult" asp-page-handler="AddTag">
                 <input type="hidden" id="tagOnPost" asp-for="Input.TagAddOnPost" />
@@ -89,6 +85,11 @@
             <form method="post" id="removeTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="RemoveTagResult" asp-page-handler="RemoveTag">
                 <input type="hidden" id="tagRemoveOnPost" asp-for="Input.TagRemoveOnPost" />
             </form>
+        </div>
+    </div>
+    <div class="col l6 s12">
+        <div id="searchTagContainer">
+
         </div>
     </div>
 
