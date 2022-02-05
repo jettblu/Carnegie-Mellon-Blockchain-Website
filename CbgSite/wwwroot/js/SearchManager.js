@@ -14,12 +14,16 @@ $("#clearIcon").on('click', function () {
 
 //FIX AS REDUNDANT.... can be optimized into one function that cases on search data type
 
-$("#tagContainer").on('click', ".tagToSelect", function () {
+$("#searchTagContainer").on('click', ".tagToSelect", function () {
     console.log("Search user selected");
     var tagId = $(this).data('id');
     var tagName = $(this).data('name');
-    // allow multiple tags to be added
-    tagsValCurr = $("#mainMembers").val();
+    console.log("Tag id:");
+    console.log(tagId);
+    console.log("Tag name:");
+    console.log(tagName);
+    // UNCOMMENT BELOW FOR CLIENT SIDE STRING TAG MANAGEMENT
+/*    tagsValCurr = $("#mainMembers").val();
     newValtags = "";
     if (tagsValCurr) {
         newValTags = tagsValCurr + "," + tagId;
@@ -30,18 +34,31 @@ $("#tagContainer").on('click', ".tagToSelect", function () {
     console.log("New tags value:")
     console.log(newValTags);
     $("#searchTags").val(newValTags);
-    $("#maintags").val(newValTags);
+    $("#maintags").val(newValTags);*/
     // reset search query to empty
     $("#searchQuery").val("");
-    console.log(userName);
-    $("#searchMemberContainer").empty();
-    $("#tagChips").append(`<div class="chip">
-                        ${fullName}
-                    </div>`);
+    $("#searchTagContainer").empty();
+    if (tagId != "na") {
+        $("#tagOnPost").val(tagId);
+    }
+    else {
+        $("#tagOnPost").val(tagName);
+    }
     // indicate tag has been chosen
     $("#searchQuery").data('selected', true);
+    $("#addTagForm").submit();
+    console.log("Tag add request submitted!");
 });
 
+$("#tagChips").on('click', ".chip", ".close", function () {
+    tagId = $(this).data("id");
+    console.log("Tag id (to remove):");
+    console.log(tagId);
+    console.log("tag close initiated");
+    $("#tagRemoveOnPost").val(tagId);
+    $("#removeTagForm").submit();
+    console.log("Remove tag request submitted!");
+});
 
 $("#searchMemberContainer").on('click', ".userToSelect", function () {
     console.log("Search user selected");
@@ -88,6 +105,35 @@ ShowSearchMembersResult = function (res) {
     console.log(result);
     $("#searchMemberContainer").empty();
     $("#searchMemberContainer").append(result);
+}
+
+AddTagResult = function (res) {
+    // json response is returned directly as opp to w/in jsonresponsetext
+    var result = res.responseJSON;
+    console.log(result);
+    if (result.isSuccess) {
+        var tagName = result.tagContent;
+        $("#tagChips").append(`<div class="chip">
+                        ${tagName}
+                    </div>`);
+        console.log("Add tag success!")
+    }
+    else {
+        console.log("Add tag failure");
+    }
+}
+
+
+RemoveTagResult = function (res) {
+    // json response is returned directly as opp to w/in jsonresponsetext
+    var result = res.responseJSON;
+    console.log(result);
+    if (result.isSuccess) {
+        var tagName = result.tagContent;
+    }
+    else {
+        console.log("Remove tag failure");
+    }
 }
 
 // clear friend options if user clicks on another screen segment

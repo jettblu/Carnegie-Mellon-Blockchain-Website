@@ -53,6 +53,9 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             public string TagsOnQuery { get; set; }
             // project members on page load
             public string TagsOnLoad { get; set; }
+            // tag user just selected to add
+            public string TagAddOnPost { get; set; }
+            public string TagRemoveOnPost { get; set; }
         }
 
         [BindProperty]
@@ -84,6 +87,7 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             }
             Tags = _tagManager.GetTagUsers(user);
             // build tag string for form 
+            Input = new InputModel();
             foreach (var t in Tags)
             {
                 Input.TagsOnLoad = Input.TagsOnLoad + t.Id + ",";
@@ -148,6 +152,52 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             return RedirectToPage();
         }
 
+
+        public async Task<IActionResult> OnPostAddTag()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var responseTagAdd = new Areas.Members.Data.ResponseTagAsync();
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+            if (!string.IsNullOrEmpty(Input.TagAddOnPost))
+            {
+                try
+                {
+                    var tag = _tagManager.AddTagUser(user, Input.TagAddOnPost);
+                    responseTagAdd.IsSuccess = true;
+                    responseTagAdd.TagContent = tag.Content;
+                }
+                catch
+                {
+                    responseTagAdd.IsSuccess = false;
+                }
+            }
+            else
+            {
+                StatusMessage = "Error: unable to add empty tag";
+            }
+            return new JsonResult(responseTagAdd);
+        }
+
+        // allow chip to be readded if db removal unsuccessful
+        public async Task<IActionResult> OnPostRemoveTag()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var responseTagRemove = new Members.Data.ResponseTagAsync();
+            responseTagRemove.TagContent = Input.TagRemoveOnPost;
+            try
+            {
+                responseTagRemove.IsSuccess = true;
+                _tagManager.RemoveTagUserById(user, Input.TagRemoveOnPost);
+            }
+            catch
+            {
+                responseTagRemove.IsSuccess = false;
+            }
+            return new JsonResult(responseTagRemove);
+        }
 
         public async Task<IActionResult> OnPostSearchTags()
         {

@@ -65,8 +65,9 @@ namespace CbgSite.Areas.Projects.Pages.Manage
                 IsAuthorized = true;
             }
             Input = new InputModel();
-            
+
             // build project user string for form 
+            Input.MembersOnLoad = "";
             foreach (var pu in ProjectUsers)
             {
                 Input.MembersOnLoad = Input.MembersOnLoad + pu.UserName + ",";
