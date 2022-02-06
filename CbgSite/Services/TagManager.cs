@@ -82,7 +82,6 @@ namespace CbgSite.Services
                 {
                     _contextCbg.TagUsers.Add(tagUserNew);
                 }
-                _contextCbg.SaveChanges();
             }
             // if tag doesn't exist then taguser doesn't, so no need to case on it
             else
