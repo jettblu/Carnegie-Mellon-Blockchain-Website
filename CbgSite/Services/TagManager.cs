@@ -23,8 +23,12 @@ namespace CbgSite.Services
             List<Areas.Members.Data.Tag> resultTags = new List<Areas.Members.Data.Tag>();
             foreach (var ut in tagUsers)
             {
-                var tag = _contextCbg.Tags.Where(t => t.Id == ut.TagId).First();
-                resultTags.Add(tag);
+                var tag = _contextCbg.Tags.Where(t => t.Id == ut.TagId).FirstOrDefault();
+                if (tag != null)
+                {
+                    resultTags.Add(tag);
+                }
+                
             }
             return resultTags;
         }
@@ -78,6 +82,7 @@ namespace CbgSite.Services
                 {
                     _contextCbg.TagUsers.Add(tagUserNew);
                 }
+                _contextCbg.SaveChanges();
             }
             // if tag doesn't exist then taguser doesn't, so no need to case on it
             else
@@ -88,10 +93,14 @@ namespace CbgSite.Services
                     Content = tagId,
                     DateCreated = DateTime.Now
                 };
+               
+                var resTagAdd = _contextCbg.Tags.Add(returnTag);
+                // set tag user tag id to newly created tag id
+                tagUserNew.TagId = resTagAdd.Entity.Id;
                 _contextCbg.TagUsers.Add(tagUserNew);
-                _contextCbg.Tags.Add(returnTag);
             }
             _contextCbg.SaveChanges();
+
             return returnTag;
         }
 

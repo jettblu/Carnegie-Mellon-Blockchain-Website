@@ -5,8 +5,14 @@
 
 
 <center>
-
-    <img src="@Model.Member.ProfilePhotoPath" alt="" class="circle profilePhoto">
+    @if (!string.IsNullOrEmpty(Model.Member.ProfilePhotoPath))
+    {
+        <img src="@Model.Member.ProfilePhotoPath" alt="" class="circle profilePhoto">
+    }
+    else
+    {
+        <img src="~/media/profiles/gradientSquare.jpg" alt="" class="circle profilePhoto">
+    }
     <p class="profileFullName">@Model.Member.Name</p>
     <div class="row">
         <div class="col s12 l12">
@@ -25,6 +31,20 @@
         </div>
 </center>
 
+@if (Model.Tags.Any())
+{
+    <div class="row">
+        <div id="tagChips" class="col l12 s12">
+            <span>Interests: </span>
+            @foreach (var tag in Model.Tags)
+            {
+                <div class="chip" data-id="@tag.Id">
+                    @tag.Content
+                </div>
+            }
+        </div>
+    </div>
+}
 
 <div class="row">
     <div class="col s12 l8 offset-l2">

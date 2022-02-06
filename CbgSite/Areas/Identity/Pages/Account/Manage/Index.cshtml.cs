@@ -88,10 +88,15 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             Tags = _tagManager.GetUserTags(user);
             // build tag string for form 
             Input = new InputModel();
-            foreach (var t in Tags)
+            Input.TagsOnLoad = "";
+            if (Tags.Any())
             {
-                Input.TagsOnLoad = Input.TagsOnLoad + t.Id + ",";
+                foreach (var t in Tags)
+                {
+                    Input.TagsOnLoad = Input.TagsOnLoad + t.Id + ",";
+                }
             }
+            
             
             await LoadAsync(user);
             return Page();
