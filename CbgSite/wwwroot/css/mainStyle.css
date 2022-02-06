@@ -4,6 +4,9 @@
     font-size: 22px;
 }
 
+.fullScreen {
+    height: 90vh;
+}
 
 .navLinks{
     color: white !important;
@@ -11,6 +14,7 @@
 
 .navLinks:hover {
     color: pink;
+    text-decoration: solid;
 }
 
 
@@ -40,6 +44,28 @@
         margin-bottom: 4%
     }
 }
+
+.sectionHeader {
+    padding-top: 1.4%;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 1.4em;
+}
+
+.blurbHeader {
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 1.8em;
+    border-bottom: 5px solid white;
+    padding-bottom: 3px;
+}
+
+.blurb {
+    font-family: Roboto;
+    font-size: 1vw;
+    text-decoration: underline;
+}
+
 
 .textGradientRed {
     background-image: linear-gradient(to right, #ffffff, #ff4747);
