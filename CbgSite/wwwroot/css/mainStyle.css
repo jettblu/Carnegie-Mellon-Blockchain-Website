@@ -35,6 +35,12 @@
     margin-bottom: 2%
 }
 
+.signature {
+    font-size: .9em;
+    font-weight: 600;
+    font-style: italic;
+}
+
 @media (max-width: 600px) {
     .logoMed {
         width: 55%;
@@ -76,8 +82,17 @@
     -moz-text-fill-color: transparent;
 }
 
-.textGradientRGreen {
+.textGradientGreen {
     background-image: linear-gradient(to right, #ffffff, #53e67a);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.textGradientBlue {
+    background-image: linear-gradient(to right, #61ff83, #4ac9ff);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
