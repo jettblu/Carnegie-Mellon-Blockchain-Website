@@ -56,25 +56,37 @@ namespace CbgSite.Areas.Projects.Pages.Manage
             {
                 return Page();
             }
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            try
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
+                var projectUser = new Data.ProjectUser()
+                {
+                    DateCreated = DateTime.Now,
+                    CbgUserId = user.Id,
+                    ProjectId = Project.Id
+                };
+                // project should be private first for review
+                Project.IsPublic = false;
+                _contextCbg.Projects.Add(Project);
+                // add project creator to project team
+                _contextCbg.ProjectUsers.Add(projectUser);
+
+                await _contextCbg.SaveChangesAsync();
+                var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
+
+                if (updateprojectUsersRes != Globals.Status.Success) StatusMessage = "Unable to add project managers";
             }
-            var projectUser = new Data.ProjectUser()
+            catch
             {
-                DateCreated = DateTime.Now,
-                CbgUserId = user.Id,
-                ProjectId = Project.Id
-            };
-            _contextCbg.Projects.Add(Project);
-            // add project creator to project team
-            _contextCbg.ProjectUsers.Add(projectUser);
+                StatusMessage = "Unable to create project";
+                return Page();
+            }
 
-            await _contextCbg.SaveChangesAsync();
-            var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
-
-            if (updateprojectUsersRes != Globals.Status.Success) StatusMessage = "Unable to add project managers";
+            StatusMessage = "Project Created!";
             return RedirectToPage("./Index");
         }
 
