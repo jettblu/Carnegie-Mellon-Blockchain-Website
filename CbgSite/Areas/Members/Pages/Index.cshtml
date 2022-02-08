@@ -34,13 +34,15 @@
 @if (Model.Tags.Any())
 {
     <div class="row">
-        <div id="tagChips" class="col l12 s12">
+        <div id="tagChips" class="col l8 offset-l2 s12">
             <span>Interests: </span>
             @foreach (var tag in Model.Tags)
             {
-                <div class="chip" data-id="@tag.Id">
-                    @tag.Content
-                </div>
+                if(tag != null){
+                    <div class="chip" data-id="@tag.Id">
+                        @tag.Content
+                    </div>
+                }
             }
         </div>
     </div>

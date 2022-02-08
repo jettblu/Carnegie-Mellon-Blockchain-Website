@@ -9,15 +9,35 @@
 
 <div class="col s12 l10 offset-l1">
     <div class="row">
-        @foreach (var project in Model.Projects)
-        {
+        @{
+            var pubProjectExists = false;
+
+            @foreach (var project in Model.Projects)
+                {
+            @if(project.IsPublic){
             <div class="col s12 l6">
                 <div class="card projectCard hoverable">
                     <div class="card-image">
-                        <img class="responsive-img" src="@project.ThumbnailPath">
+                        @if (string.IsNullOrEmpty(project.ThumbnailPath))
+                        {
+                            <img class="responsive-img" src="@project.MainPhotoPath">
+                        }
+                        else
+                        {
+                            <img class="responsive-img" src="@project.ThumbnailPath">
+                        }
                     </div>
                     <div class="card-content">
-                        <span class="card-title">@project.Name</span>
+                        @*temporary project link assignment*@
+                        @if (project.Name == "Kryptik")
+                        {
+                            <span class="card-title">@project.Name <a href="https://kryptik.app/" target="_blank" rel="noopener noreferrer"><i class="material-icons blue-text">link</i></a> </span>
+                        }
+                        else
+                        {
+                            <span class="card-title">@project.Name</span>
+                        }
+                        
                         <p>@project.Description</p>
                     </div>
                     <div class="card-action">
@@ -25,7 +45,16 @@
                     </div>
                 </div>
             </div>
+                        pubProjectExists = true;
+                    }
+
+                }
+             if(!pubProjectExists){
+              <p>There are no public projects available at the moment. But <em>don't worry</em>, our members are hard at work in the lab building the decentralized future.</p>
+             }
+
         }
+
     </div>
 </div>
 

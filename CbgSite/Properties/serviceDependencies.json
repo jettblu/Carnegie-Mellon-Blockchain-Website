@@ -1,12 +1,16 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "CbgSiteContextConnection"
+    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "DefaultConnection"
     },
-    "mssql2": {
-      "type": "mssql",
-      "connectionId": "CbgSiteContextConnection"
+    "storage1": {
+      "type": "storage",
+      "connectionId": "CbgSiteStorageConnection"
     }
   }
 }

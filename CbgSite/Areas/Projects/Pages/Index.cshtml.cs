@@ -36,13 +36,18 @@ namespace CbgSite.Areas.Projects.Pages
             var user = await _userManager.GetUserAsync(User);
             Project = _contextCbg.Projects.FirstOrDefault(p => p.Id == id);
             ProjectUsers = await _projectManager.GetProjectUsers(Project);
-            
+            var isSuperAdmin = false;
             // toggle authorization based on custom parameters
-            var isSuperAdmin = await _userManager.IsInRoleAsync(user, Globals.Roles.SuperAdmin.ToString());
-            if (isSuperAdmin || ProjectUsers.Contains(user))
+            if (user != null)
             {
-                IsCreator = true;
+                isSuperAdmin = await _userManager.IsInRoleAsync(user, Globals.Roles.SuperAdmin.ToString());
+                if (isSuperAdmin || ProjectUsers.Contains(user))
+                {
+                    IsCreator = true;
+                }
             }
+            
+           
 
             if (Project == null)
             {

@@ -32,7 +32,7 @@ namespace CbgSite.Services
 
         public async Task<List<CbgUser>> GetProjectUsers(Areas.Projects.Data.Project project)
         {
-            var projectUsers =  _contextCbg.ProjectUsers.Where(p => p.ProjectId == project.Id);
+            var projectUsers =  _contextCbg.ProjectUsers.Where(p => p.ProjectId == project.Id).ToList();
             List<CbgUser> resultUsers = new List<CbgUser>();
             foreach (var pu in projectUsers)
             {
@@ -65,7 +65,23 @@ namespace CbgSite.Services
             return Globals.Status.Success;
         }
 
+        public List<CbgUser> SearchUsers(CbgUser user, string query, int amount = 0)
+        {
+            // return top n matches where n=amount parameter
+            if (amount != 0)
+            {
+                // match username, username, or number based on query. Exclude current user from result
+                return _contextCbg.Users.Where(s => (s != user && s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
+                || s.Email.Contains(query))).Take(amount).ToList();
+            }
+            else
+            {
+                // match username, username, or number based on query. Exclude current user from result
+                return _contextCbg.Users.Where(s => (s != user && s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
+                || s.Email.Contains(query))).ToList();
+            }
 
+        }
 
         private bool ProjectUserExists(Areas.Projects.Data.ProjectUser projectUser)
         {

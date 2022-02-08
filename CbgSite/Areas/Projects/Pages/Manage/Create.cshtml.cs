@@ -74,17 +74,23 @@ namespace CbgSite.Areas.Projects.Pages.Manage
                 _contextCbg.Projects.Add(Project);
                 // add project creator to project team
                 _contextCbg.ProjectUsers.Add(projectUser);
-
-                await _contextCbg.SaveChangesAsync();
-                var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
-
-                if (updateprojectUsersRes != Globals.Status.Success) StatusMessage = "Unable to add project managers";
             }
             catch
             {
                 StatusMessage = "Unable to create project";
                 return Page();
             }
+
+            try
+            {
+                await _contextCbg.SaveChangesAsync();
+                var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
+            }
+            catch
+            {
+                StatusMessage = "Error: unable to add project managers";
+            }
+            
 
             StatusMessage = "Project Created!";
             return RedirectToPage("./Index");
@@ -108,7 +114,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
 
             // match customer name, username, or number based on query
-            var users = Utils.SearchUsers(user, _contextCbg, query);
+            var users = _projectManager.SearchUsers(user, query);
             if (!string.IsNullOrEmpty(Input.MembersOnQuery))
             {
                 // remove users from search result if already selected

@@ -32,13 +32,32 @@ namespace CbgSite.Areas.Members.Pages
             {
                 return NotFound();
             }
+            if(!MemberExists(id)) return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             Member = _contextCbg.Users.FirstOrDefault(u => u.Id == id);
             Tags = _tagManager.GetUserTags(Member);
+            try
+            {
+                var x = "";   
+            }
+            catch
+            {
+                Tags = new List<Data.Tag>();
+                Tags.Add(new Data.Tag()
+                {
+                    Id = "na",
+                    Content = "DeFi"
+                });
+            }
+            
             if (User == null)
             {
                 return NotFound();
             }
             return Page();
+        }
+        private bool MemberExists(string id)
+        {
+            return _contextCbg.Users.Any(e => e.Id == id);
         }
     }
 }

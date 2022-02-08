@@ -19,8 +19,9 @@ namespace CbgSite.Services
         // return s all tags associated with user
         public List<Areas.Members.Data.Tag> GetUserTags(CbgUser user)
         {
-            var tagUsers = _contextCbg.TagUsers.Where(p => p.CbgUserId == user.Id);
+            var tagUsers = _contextCbg.TagUsers.Where(p => p.CbgUserId == user.Id).ToList();
             List<Areas.Members.Data.Tag> resultTags = new List<Areas.Members.Data.Tag>();
+            if (tagUsers == null || !tagUsers.Any()) return resultTags;
             foreach (var ut in tagUsers)
             {
                 var tag = _contextCbg.Tags.Where(t => t.Id == ut.TagId).FirstOrDefault();
@@ -137,6 +138,12 @@ namespace CbgSite.Services
         private bool TagUserExists(Areas.Members.Data.TagUser tagUser)
         {
             return _contextCbg.TagUsers.Any(t => t.CbgUserId == tagUser.CbgUserId && t.TagId == tagUser.TagId);
+        }
+
+        public List<Areas.Members.Data.Tag> SearchTags(CbgUser user, string query, int amount = 0)
+        {
+            // tag based on query 
+            return _contextCbg.Tags.Where(s => (s.Content.Contains(query))).ToList();
         }
 
     }

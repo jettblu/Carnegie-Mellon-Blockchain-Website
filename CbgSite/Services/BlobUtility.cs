@@ -16,7 +16,6 @@ namespace CbgSite.Services
         private readonly StorageAccountOptions _settings;
         private readonly Areas.Identity.Data.CbgUser _user;
         public string BlobURI { get; set; }
-        public string URIBase = "https://siteblob.blob.core.windows.net/";
 
 
         public BlobUtility(StorageAccountOptions settings, Areas.Identity.Data.CbgUser user)
@@ -37,7 +36,7 @@ namespace CbgSite.Services
             string blobName = GenerateFileName(fileName);
             BlobClient blobClient = containerClient.GetBlobClient(blobName);
             await blobClient.UploadAsync(fileStream, true);
-            BlobURI = URIBase + containerName + "/" + blobName;
+            BlobURI = _settings.UriBase + containerName + "/" + blobName;
         }
 
         // generate file name for blob object

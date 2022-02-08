@@ -4,6 +4,13 @@
     font-size: 22px;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 .fullScreen {
     height: 90vh;
 }
@@ -12,10 +19,9 @@
     color: white !important;
 }
 
-.navLinks:hover {
-    color: pink;
-    text-decoration: solid;
-}
+    .navLinks:hover {
+        color: #70ff99 !important;
+    }
 
 
 .logoSmall {
@@ -72,6 +78,10 @@
     text-decoration: underline;
 }
 
+
+.instructions {
+    font-size: .9vw;
+}
 
 .textGradientRed {
     background-image: linear-gradient(to right, #ffffff, #ff4747);

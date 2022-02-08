@@ -59,6 +59,16 @@ artifacts/
 # StyleCop
 StyleCopReport.xml
 
+# Production Files
+mssql1.arm.json
+mssql2.arm.json
+profile.arm.json
+storage1.arm.json
+serviceDependencies.CbgSite20220207122927 - Web Deploy.json
+serviceDependencies.json
+dotnet-tools.json
+
+
 # Files built by Visual Studio
 *_i.c
 *_p.c

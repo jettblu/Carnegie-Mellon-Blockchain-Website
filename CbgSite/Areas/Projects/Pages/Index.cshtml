@@ -7,10 +7,26 @@
 <div class="col s12 l10 offset-l1">
     <div class="row">
         <div class="center">
-            <img src="@Model.Project.ThumbnailPath" class="logoMed">
+            @if (string.IsNullOrEmpty(Model.Project.MainPhotoPath))
+            {
+                <img class="responsive-img logoMed" src="@Model.Project.ThumbnailPath">
+            }
+            else
+            {
+                <img class="responsive-img logoMed" src="@Model.Project.MainPhotoPath">
+            }
         </div>
         <div class="projectContent">
+            @*temporary project link assignment*@
+            @if (Model.Project.Name == "Kryptik")
+            {
+            <h4>@Model.Project.Name <a href="https://kryptik.app/" target="_blank" rel="noopener noreferrer"><i class="material-icons blue-text">link</i></a></h4>
+            }
+            else
+            {
             <h4>@Model.Project.Name</h4>
+            }
+
 
 
             <center>
@@ -18,39 +34,42 @@
                     <div class="col s12 l12">
                         @if (!String.IsNullOrEmpty(Model.Project.LinkTwitter))
                         {
-                            <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" class="socialIcon" /></a>
+                        <a href="@Model.Project.LinkTwitter"><img src="~/media/social/logoTwitterBlue.svg" class="socialIcon" /></a>
                         }
                         @if (!String.IsNullOrEmpty(Model.Project.LinkGithub))
                         {
-                            <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithubWhite.svg" class="socialIcon" /></a>
+                        <a href="@Model.Project.LinkGithub"><img src="~/media/social/logoGithubWhite.svg" class="socialIcon" /></a>
                         }
                     </div>
                 </div>
             </center>
+            @if(Model.ProjectUsers.Any()){
             <h6 style="color: lightgray">Creators</h6>
-            @foreach (var puser in Model.ProjectUsers)
-            {
+                @foreach (var puser in Model.ProjectUsers)
+                {
                 <a asp-area="Members" asp-page="Index" asp-route-id="@puser.Id">
                     <div class="chip hoverable">
                         <img src="@puser.ProfilePhotoPath" alt="Project Manager">
                         @puser.Name
                     </div>
                 </a>
+                }
             }
+
             <h5 style="color: @Model.Project.Color">Summary</h5>
             <p style="white-space: pre-line; font-size: 18px;">@Model.Project.Description</p>
             @if (!String.IsNullOrEmpty(Model.Project.DescriptionLong))
             {
-                <h5 style="color: @Model.Project.Color">Description</h5>
-                <p style="white-space: pre-line; font-size: 18px;">@Model.Project.DescriptionLong</p>
+            <h5 style="color: @Model.Project.Color">Description</h5>
+            <p style="white-space: pre-line; font-size: 18px;">@Model.Project.DescriptionLong</p>
             }
             @if (Model.IsCreator)
             {
-                <br />
-                <br />
-                <div class="align-right">
-                    <a asp-page="./Manage/Edit" asp-route-id="@Model.Project.Id">Edit</a>
-                </div>
+            <br />
+            <br />
+            <div class="align-right">
+                <a asp-page="./Manage/Edit" asp-route-id="@Model.Project.Id">Edit</a>
+            </div>
             }
         </div>
     </div>

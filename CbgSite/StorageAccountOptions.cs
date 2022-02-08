@@ -13,5 +13,6 @@ namespace CbgSite
         public string FullImagesContainerNameOption { get; set; }
         public string ScaledImagesContainerNameOption { get; set; }
         public string AvatarImagesContainerNameOption { get; set; }
+        public string UriBase { get; set; }
     }
 }

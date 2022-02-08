@@ -85,7 +85,20 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            Tags = _tagManager.GetUserTags(user);
+            try
+            {
+                Tags = _tagManager.GetUserTags(user);
+            }
+            catch
+            {
+                Tags = new List<Members.Data.Tag>();
+                Tags.Add(new Members.Data.Tag()
+                {
+                    Id = "na",
+                    Content = "DeFi"
+                });
+            }
+            
             // build tag string for form 
             Input = new InputModel();
             Input.TagsOnLoad = "";
@@ -219,7 +232,7 @@ namespace CbgSite.Areas.Identity.Pages.Account.Manage
                 return Page();
             }*/
 
-            var tags = Utils.SearchTags(user, _contextCbg, query, amount:5);
+            var tags = _tagManager.SearchTags(user, query, amount:5);
             // UNCOMMENT AND FIX TO filter results returned from search
             // match customer name, username, or number based on query
             /*            var tags = Utils.SearchTags(user, _contextCbg, query);

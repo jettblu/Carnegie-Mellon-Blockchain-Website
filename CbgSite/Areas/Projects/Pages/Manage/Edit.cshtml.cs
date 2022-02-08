@@ -105,9 +105,18 @@ namespace CbgSite.Areas.Projects.Pages.Manage
                 }
             }
 
-            var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
+            try
+            {
+                var updateprojectUsersRes = await _projectManager.AddProjectUsersFromString(Input.Members, Project);
+                StatusMessage = "Project update successful!";
+            }
+            catch
+            {
+                StatusMessage = "Error: unable to add project managers.";
+            }
+            
 
-            if (updateprojectUsersRes != Globals.Status.Success) StatusMessage = "Unable to add project managers";
+            
 
             return RedirectToPage("./Index");
         }
@@ -135,7 +144,7 @@ namespace CbgSite.Areas.Projects.Pages.Manage
 
 
             // match customer name, username, or number based on query
-            var users = Utils.SearchUsers(user, _contextCbg, query);
+            var users = _projectManager.SearchUsers(user, query);
             if (!string.IsNullOrEmpty(Input.MembersOnQuery))
             {
                 // remove users from search result if already selected

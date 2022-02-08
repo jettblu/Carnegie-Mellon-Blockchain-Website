@@ -57,6 +57,7 @@ $("#tagChips").on('click', ".chip", ".close", function () {
     console.log("tag close initiated");
     $("#tagRemoveOnPost").val(tagId);
     $("#removeTagForm").submit();
+    $("#searchQuery").val("");
     console.log("Remove tag request submitted!");
 });
 

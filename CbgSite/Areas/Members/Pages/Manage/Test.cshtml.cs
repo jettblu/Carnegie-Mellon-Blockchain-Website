@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CbgSite.Areas.Members.Pages
-{/*
-    [Authorize(Roles = "SuperAdmin")]*/
+{
+    [Authorize(Roles = "SuperAdmin")]
     public class TestModel : PageModel
     {
         private readonly UserManager<CbgUser> _userManager;

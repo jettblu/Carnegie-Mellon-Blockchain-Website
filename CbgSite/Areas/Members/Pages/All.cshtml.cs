@@ -34,7 +34,7 @@ namespace CbgSite.Areas.Members.Pages
         public void OnGet()
         {
             // retrieve members and update model state          
-            Members = _contextCbg.Users.ToList();
+            Members = _contextCbg.Users.Where(u=>u.EmailConfirmed == true).ToList();
         }
         // ADD ABILITY TO REMOVE FROM ALL ROLES (or display multiple at same time)
         public async Task<JsonResult> OnPostUpdateRolesAsync()
