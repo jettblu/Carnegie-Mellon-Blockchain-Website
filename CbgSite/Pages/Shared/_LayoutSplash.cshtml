@@ -33,24 +33,22 @@
         <div class="row">
             @RenderBody()
         </div>
-        <div class="section"></div>
-        <div class="section"></div>
         @RenderSection("Scripts", required: false)
     </main>
-    <footer class="page-footer black">
-        <hr>
+    <footer class="page-footer black" style="margin-top: 0px;">
+        
         <div>
             <div class="row ">
-                <div class="col l2 s6 align-left">
-                    <h6 class="white-text">Code</h6>
-                    <a href="https://github.com/jettblu" target="_blank" rel="noopener noreferrer"><p class="textGradientBlue signature">   Made by Jett Blu</p></a>
+                <div class="col offset-l2 l2 s6 offset-l2 align-left">
+                    <h6 class="red-text">Code</h6>
+                    <a href="https://github.com/jettblu" target="_blank" rel="noopener noreferrer"><p class="signature">Created by <span class="textGradientBlue">Jett Blu</span></p></a>
                 </div>
-                <div class="col l2 offset-l8 s6 align-right">
-                    <h6 class="white-text">Connect</h6>
+                <div class="col l2 offset-l5 s6 align-right">
+                    <h6 class="red-text">Connect</h6>
                     <a class="grey-text text-lighten-3" href="https://twitter.com/CMUBlockchain" target="_blank" rel="noopener noreferrer">Twitter</a>
                     | <a class="grey-text text-lighten-3" href="https://discord.gg/9Pqq6nnwU2" target="_blank" rel="noopener noreferrer">Discord</a>
                     | <a class="grey-text text-lighten-3" href="cmu.blockchain.group@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
-                    | <a class="nav-link text-lighten-3" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    | <a class="nav-link text-lighten-3 white-text" asp-area="Identity" asp-page="/Account/Login">Login</a>
                 </div>
             </div>
         </div>

@@ -15,27 +15,27 @@
     {
         <div class="center-align">
             <img src="@userInfo.ProfilePhotoPath" alt="" class="circle profilePhoto">
-            <h6><a asp-area="Identity" asp-page="/Account/Manage/ProfilePhoto" title="Profile" class="profileFullName">@userInfo.Name</a></h6>
+            <h6><a asp-area="Identity" asp-page="/Account/Manage/ProfilePhoto" title="Profile" class="profileFullName black-text">@userInfo.Name</a></h6>
         </div>
     }
     else
     {
-    <div class="center-align">
-        <img src="~/media/profiles/gradientSquare.jpg" alt="" class="circle profilePhoto">
-        <h6><a asp-area="Identity" asp-page="/Account/Manage/ProfilePhoto" title="Profile" class="profileFullName">@userInfo.Name</a></h6>
-    </div>
+        <div class="center-align">
+            <img src="~/media/profiles/gradientSquare.jpg" alt="" class="circle profilePhoto">
+            <h6><a asp-area="Identity" asp-page="/Account/Manage/ProfilePhoto" title="Profile" class="profileFullName">@userInfo.Name</a></h6>
+        </div>
     }
     <br />
     <li><a class="@ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-    <li class="nav-item"><a class="@ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-    <li class="nav-item"><a class="@ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+    <li class="nav-item sideNavItemMobile"><a class="@ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+    <li class="nav-item sideNavItemMobile"><a class="@ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
     @if (hasExternalLogins)
     {
         <li id="external-logins" class="nav-item"><a id="external-login" class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External Logins</a></li>
     }
-    <li class="nav-item"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./ProfilePhoto">Profile Photo</a></li>
-    <li class="nav-item"><a class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor Auth.</a></li>
-    <li class="nav-item"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal Data</a></li>
+    <li class="nav-item sideNavItemMobile"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./ProfilePhoto">Profile Photo</a></li>
+    <li class="nav-item sideNavItemMobile"><a class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Authentication</a></li>
+    <li class="nav-item sideNavItemMobile"><a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal Data</a></li>
     <li>
         <center>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">

@@ -35,19 +35,19 @@
     <br>
     <div class="center-align "><a href="/"><img src="~/media/cbgLogo.png" alt="CBG Logo" class="logoSmall"></a></div>
 
-    <li><a class="navLinks" asp-area="Projects" asp-page="All">Projects</a></li>
-    <li><a class="navLinks" href="https://bafnetwork.notion.site/bafnetwork/Clubs-Hub-201a4b8fb6b94b929757331514a7467f" target="_blank" rel="noopener noreferrer">Resources</a></li>
-    <li><a class="navLinks" asp-area="Members" asp-page="All">Members</a></li>
+    <li><a class="navLinks sideNavItemMobile" asp-area="Projects" asp-page="All">Projects</a></li>
+    <li><a class="navLinks sideNavItemMobile" href="https://bafnetwork.notion.site/bafnetwork/Clubs-Hub-201a4b8fb6b94b929757331514a7467f" target="_blank" rel="noopener noreferrer">Resources</a></li>
+    <li><a class="navLinks sideNavItemMobile" asp-area="Members" asp-page="All">Members</a></li>
     @if (SignInManager.IsSignedIn(User))
     {
         <li>
-            <a class="navLinks" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+            <a class="navLinks sideNavItemMobile" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
         </li>
     }
     else
     {
         <li>
-            <a class="navLinks" asp-area="Identity" asp-page="/Account/Register">Join</a>
+            <a class="navLinks sideNavItemMobile" asp-area="Identity" asp-page="/Account/Register">Join</a>
         </li>
         @*<li>
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>

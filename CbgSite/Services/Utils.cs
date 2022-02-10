@@ -18,6 +18,9 @@ namespace CbgSite.Services
         }
 
 
-        
+        public static bool IsValidEmail(string email)
+        {
+            return email.Contains("andre.cmu.edu");
+        }
     }
 }

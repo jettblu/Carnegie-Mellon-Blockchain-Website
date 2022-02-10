@@ -161,6 +161,9 @@ AutoTest.Net/
 # Web workbench (sass)
 .sass-cache/
 
+#leader photos
+wwwroot/media/leaders
+
 # Installshield output folder
 [Ee]xpress/
 
