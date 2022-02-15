@@ -74,19 +74,21 @@
             }
         </div>
         <span class="labelFor">Interests:</span>
-        <div class="input-field inline">
-            <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
-            <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchTagsResult" asp-page-handler="SearchTags">
-                <input type="hidden" id="searchTags" asp-for="Input.TagsOnQuery" />
-                <input type="hidden" id="loadTags" asp-for="Input.TagsOnLoad" />
-                <input id="tags" data-selected="false" type="text" placeholder="Bitcoin, Defi, etc." class="validate align-right" asp-for="Input.SearchStringAsync">
-            </form>
-            <form method="post" id="addTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="AddTagResult" asp-page-handler="AddTag">
-                <input type="hidden" id="tagOnPost" asp-for="Input.TagAddOnPost" />
-            </form>
-            <form method="post" id="removeTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="RemoveTagResult" asp-page-handler="RemoveTag">
-                <input type="hidden" id="tagRemoveOnPost" asp-for="Input.TagRemoveOnPost" />
-            </form>
+        <div>
+            <div class="input-field inline">
+                <i id="clearIcon" style="position: absolute; right: 0px;" class="material-icons tiny" hidden>close</i>
+                <form method="post" id="searchForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="ShowSearchTagsResult" asp-page-handler="SearchTags">
+                    <input type="hidden" id="searchTags" asp-for="Input.TagsOnQuery" />
+                    <input type="hidden" id="loadTags" asp-for="Input.TagsOnLoad" />
+                    <input id="tags" data-selected="false" type="text" placeholder="Bitcoin, Defi, etc." class="validate align-right" asp-for="Input.SearchStringAsync">
+                </form>
+                <form method="post" id="addTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="AddTagResult" asp-page-handler="AddTag">
+                    <input type="hidden" id="tagOnPost" asp-for="Input.TagAddOnPost" />
+                </form>
+                <form method="post" id="removeTagForm" data-ajax="true" data-ajax-method="post" data-ajax-complete="RemoveTagResult" asp-page-handler="RemoveTag">
+                    <input type="hidden" id="tagRemoveOnPost" asp-for="Input.TagRemoveOnPost" />
+                </form>
+            </div>
         </div>
     </div>
     <div class="col l6 s12">
