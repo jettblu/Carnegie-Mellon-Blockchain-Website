@@ -72,13 +72,13 @@ namespace CbgSite.Services
             {
                 // match username, username, or number based on query. Exclude current user from result
                 return _contextCbg.Users.Where(s => (s != user && s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
-                || s.Email.Contains(query))).Take(amount).ToList();
+                || s.Email.Contains(query) && s.EmailConfirmed)).Take(amount).ToList();
             }
             else
             {
                 // match username, username, or number based on query. Exclude current user from result
                 return _contextCbg.Users.Where(s => (s != user && s.UserName.Contains(query) || s.PhoneNumber.StartsWith(query) || s.Name.Contains(query)
-                || s.Email.Contains(query))).ToList();
+                || s.Email.Contains(query) && s.EmailConfirmed)).ToList();
             }
 
         }
