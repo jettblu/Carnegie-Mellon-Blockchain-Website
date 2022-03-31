@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace CbgSite.Areas.Projects.Pages.Manage
 {
-    [Authorize(Roles = "SuperAdmin")]
     public class CreateModel : PageModel
     {
         private Services.ProjectManager _projectManager { get; set; }

@@ -13,17 +13,18 @@
         foreach (var currUser in Model.Users)
         {
             <a class="userToSelect" data-user="@currUser.UserName" data-photo="@currUser.ProfilePhotoPath" data-name="@currUser.Name">
-                <div class="col s10 l6 offset-l3 offset-s1 card hoverable black">
+                <div class="col s10 l8 offset-l2 offset-s1 card hoverable black">
+                    <div class="row">
+                        <div class="col s1 l1">
+                            <img src="@currUser.ProfilePhotoPath" alt="user photo" class="circle profilePhotoSearch">
+                        </div>
 
-                    <div class="col s1 l1">
-
-                        <img src="@currUser.ProfilePhotoPath" alt="user photo" class="circle profilePhotoSearch">
-
+                        <div class="col s4 l4 offset-l1 offset-s2" style="padding-left: 0px; padding-top: 0px">
+                            <span class="searchUserFullName">@currUser.Name</span>
+                        </div>
                     </div>
 
-                    <div class="col s4 l4 offset-l1 offset-s2" style="padding-left: 0px; padding-top: 0px">
-                        <span class="searchUserFullName">@currUser.Name</span>
-                    </div>
+                    
                 </div>
             </a>
         }
